@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoCrafts & Upgrades</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* UI Base Themes Derived from image_ffeaa5.jpg */
+        body { background-color: #0b0d10; }
+        .metallic-card { 
+            background: linear-gradient(145deg, #181b22, #111318);
+            border: 1px solid #334155;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .metallic-border { border-color: #475569; }
+        .logo-text-auto { color: #e11d48; font-family: 'Impact', 'Arial Black', sans-serif; tracking: -0.05em; }
+        .logo-text-crafts { color: #2563eb; font-family: 'Impact', 'Arial Black', sans-serif; tracking: -0.05em; }
+        
+        /* Custom styling for the embedded logo container */
+        .brand-logo-disk {
+            background-image: url('image_ffeaa5.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="text-slate-100 font-sans antialiased">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="bg-[#0f1115] border-b-2 metallic-border sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-24">
+                <div class="flex items-center space-x-4">
+                    <!-- Brand Identity containing verification image_ffeaa5.jpg as component -->
+                    <div class="flex items-center space-x-3 cursor-pointer" onclick="showSection('home')">
+                        <div class="w-14 h-14 rounded-full brand-logo-disk border-2 border-slate-400 shadow-inner"></div>
+                        <div>
+                            <div class="text-2xl font-black uppercase tracking-tight flex items-center leading-none">
+                                <span class="logo-text-auto">AUTO</span>
+                                <span class="logo-text-crafts ml-1">CRAFTS</span>
+                            </div>
+                            <span class="block text-[10px] text-slate-400 font-bold tracking-[0.25em] uppercase mt-0.5">& Upgrades</span>
+                        </div>
+                    </div>
+                    <div class="hidden md:block ml-10">
+                        <div class="flex space-x-8">
+                            <button onclick="showSection('home')" class="nav-link text-white border-b-2 border-rose-600 px-1 py-2 text-sm font-black uppercase tracking-wider">Home</button>
+                            <button onclick="showSection('services')" class="nav-link text-slate-400 hover:text-white px-1 py-2 text-sm font-black uppercase tracking-wider transition">Services</button>
+                            <button onclick="showSection('shop')" class="nav-link text-slate-400 hover:text-white px-1 py-2 text-sm font-black uppercase tracking-wider transition">Shop</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Shopping Cart Trigger Button -->
+                    <button onclick="toggleCartModal()" class="relative text-slate-300 hover:text-white bg-slate-800/60 hover:bg-slate-800 px-4 py-2.5 rounded-lg border border-slate-700 transition">
+                        <i class="fa-solid fa-cart-shopping text-md"></i>
+                        <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-rose-600 text-white rounded-full text-[10px] w-5 h-5 flex items-center justify-center font-black border border-slate-900 hidden">0</span>
+                    </button>
+                    <button onclick="openLoginModal(false)" class="text-slate-300 hover:text-white text-xs font-bold uppercase tracking-wider px-3 py-2"><i class="fa-solid fa-user mr-2"></i>Login</button>
+                    <button onclick="openLoginModal(true)" class="bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white px-4 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest shadow-md transition duration-200 border border-rose-500"><i class="fa-solid fa-gears mr-2"></i>Admin Panel</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINERS -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- HOME SECTION -->
+        <section id="home-section" class="space-y-12">
+            <!-- Hero Banner -->
+            <div class="relative bg-gradient-to-br from-slate-900 via-[#13161c] to-slate-900 rounded-2xl overflow-hidden border-2 metallic-border min-h-[400px] flex items-center p-8 md:p-12 shadow-2xl">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e11d48_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="relative z-20 max-w-2xl space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700 rounded-full px-4 py-1.5 text-xs font-bold text-slate-300 uppercase tracking-wider shadow">
+                        <span class="w-2 h-2 rounded-full bg-rose-600 animate-pulse"></span>
+                        <span>Premium Mechanical Enhancements</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-none">
+                        Precision <span class="text-rose-600">Upgrades</span> For Your Machine
+                    </h1>
+                    <p class="text-slate-400 text-base md:text-lg leading-relaxed">
+                        Explore professional-grade components curated for maximum durability. From custom deep dish matting layouts to ruggedized trail components.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="showSection('shop')" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black px-8 py-3.5 rounded-lg uppercase tracking-wider text-xs shadow-lg transition">Launch Catalog</button>
+                        <button onclick="showSection('services')" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 font-black px-8 py-3.5 rounded-lg uppercase tracking-wider text-xs transition">Our Specializations</button>
+                    </div>
+                </div>
+                <!-- Large Right Accent Graphic matching image_ffeaa5.jpg asset profile -->
+                <div class="hidden lg:flex absolute right-12 top-1/2 -translate-y-1/2 w-80 h-80 opacity-25 rounded-full brand-logo-disk border-4 border-slate-700 pointer-events-none mix-blend-luminosity"></div>
+            </div>
+
+            <!-- Value Propositions Panels -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="metallic-card p-6 rounded-xl text-center space-y-3">
+                    <div class="w-12 h-12 bg-rose-600/10 border border-rose-500/30 rounded-lg flex items-center justify-center mx-auto">
+                        <i class="fa-solid fa-shield-halved text-2xl text-rose-500"></i>
+                    </div>
+                    <h3 class="text-md font-black uppercase tracking-wider text-slate-200">Premium Matting</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Custom floor matrices configured for flawless structural coverage and containment.</p>
+                </div>
+                <div class="metallic-card p-6 rounded-xl text-center space-y-3">
+                    <div class="w-12 h-12 bg-blue-600/10 border border-blue-500/30 rounded-lg flex items-center justify-center mx-auto">
+                        <i class="fa-solid fa-cloud-showers-heavy text-2xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-md font-black uppercase tracking-wider text-slate-200">Rain Visors</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Aerodynamic structures profile-matched to minimize fluid resistance and cabin turbulence.</p>
+                </div>
+                <div class="metallic-card p-6 rounded-xl text-center space-y-3">
+                    <div class="w-12 h-12 bg-rose-600/10 border border-rose-500/30 rounded-lg flex items-center justify-center mx-auto">
+                        <i class="fa-solid fa-truck-monster text-2xl text-rose-500"></i>
+                    </div>
+                    <h3 class="text-md font-black uppercase tracking-wider text-slate-200">Off-Road Ready</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Heavy-duty reinforcements engineered to survive hostile environments and structural overloads.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services-section" class="hidden space-y-8">
+            <div class="border-b metallic-border pb-4">
+                <h2 class="text-3xl font-black uppercase tracking-wider">Engineering Services</h2>
+                <p class="text-slate-400 text-xs mt-1">Professional layout, sizing integration, and machinery adjustments.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="metallic-card p-8 rounded-xl flex flex-col justify-between border-t-4 border-t-blue-600">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-black text-blue-500 tracking-widest uppercase bg-blue-950 border border-blue-800 px-2.5 py-1 rounded">Precision Layout</span>
+                        <h3 class="text-xl font-black uppercase tracking-tight text-slate-100">Car Matting Configuration</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">We provide precision sizing checks for specific chassis makes. Our system isolates cabin floor vulnerabilities to assure perfect physical stabilization against fluid leaks or sliding components.</p>
+                    </div>
+                    <button onclick="showSection('shop')" class="mt-6 text-xs font-black uppercase tracking-wider text-rose-500 hover:text-rose-400 transition flex items-center gap-2">Browse Matting Inventory <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <div class="metallic-card p-8 rounded-xl flex flex-col justify-between border-t-4 border-t-rose-600">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-black text-rose-500 tracking-widest uppercase bg-rose-950 border border-rose-800 px-2.5 py-1 rounded">Utility Fitting</span>
+                        <h3 class="text-xl font-black uppercase tracking-tight text-slate-100">Off-Road Architecture</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Preparing armor matrices for technical paths? We configure external armor layers, modular steps, and mechanical utility points for transport trucks, vans, and tactical utilities.</p>
+                    </div>
+                    <a href="https://shopee.ph" target="_blank" class="mt-6 text-xs font-black uppercase tracking-wider text-blue-500 hover:text-blue-400 transition flex items-center gap-2">Inquire via Shopee <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SHOP SECTION -->
+        <section id="shop-section" class="hidden space-y-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b metallic-border pb-4 gap-4">
+                <div>
+                    <h2 class="text-3xl font-black uppercase tracking-wider">Product Catalog</h2>
+                    <p class="text-slate-400 text-xs mt-1">Configure your selected items and load your basket.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterShop('all')" class="bg-slate-800 hover:bg-slate-700 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-md border border-slate-600 transition">All Items</button>
+                    <button onclick="filterShop('Matting')" class="bg-slate-800 hover:bg-slate-700 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-md border border-slate-600 transition">Matting</button>
+                    <button onclick="filterShop('Visor')" class="bg-slate-800 hover:bg-slate-700 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-md border border-slate-600 transition">Visors</button>
+                    <button onclick="filterShop('Off-Road')" class="bg-slate-800 hover:bg-slate-700 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-md border border-slate-600 transition">Off-Road</button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Injected dynamically via standard system synchronizations -->
+            </div>
+        </section>
+
+        <!-- ADMIN DASHBOARD SECTION -->
+        <section id="admin-section" class="hidden space-y-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b metallic-border pb-4 gap-4">
+                <div>
+                    <h2 class="text-3xl font-black uppercase tracking-wider text-rose-600 flex items-center gap-2"><i class="fa-solid fa-gauge-high"></i> Control Console</h2>
+                    <p class="text-slate-400 text-xs mt-1">Live configuration streams, inventory thresholds, and catalog data strings.</p>
+                </div>
+                <button onclick="logoutAdmin()" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-xs font-black uppercase tracking-wider py-2.5 px-5 rounded-md transition">Exit Console</button>
+            </div>
+
+            <!-- Administrative System Insights -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="metallic-card p-6 rounded-xl flex items-center justify-between border-l-4 border-l-emerald-500">
+                    <div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Aggregated Sales</p>
+                        <h3 id="admin-revenue" class="text-2xl font-black text-emerald-400 mt-1">₱0</h3>
+                    </div>
+                    <i class="fa-solid fa-money-bill-wave text-3xl text-slate-700"></i>
+                </div>
+                <div class="metallic-card p-6 rounded-xl flex items-center justify-between border-l-4 border-l-blue-500">
+                    <div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Dispatched Units</p>
+                        <h3 id="admin-units-sold" class="text-2xl font-black text-blue-400 mt-1">0 pcs</h3>
+                    </div>
+                    <i class="fa-solid fa-boxes-packing text-3xl text-slate-700"></i>
+                </div>
+                <div class="metallic-card p-6 rounded-xl flex items-center justify-between border-l-4 border-l-purple-500">
+                    <div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Processed Signals</p>
+                        <h3 id="admin-orders-count" class="text-2xl font-black text-purple-400 mt-1">0</h3>
+                    </div>
+                    <i class="fa-solid fa-network-wired text-3xl text-slate-700"></i>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Add New Product Component Mod -->
+                <div class="metallic-card p-6 rounded-xl h-fit space-y-4 shadow-xl">
+                    <h3 class="text-md font-black uppercase tracking-wider text-blue-400 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-square-plus"></i> Append Listing</h3>
+                    <form id="add-product-form" onsubmit="addNewProduct(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Item Label / Nomenclature</label>
+                            <input type="text" id="prod-name" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-medium">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Classification</label>
+                                <select id="prod-cat" class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-bold">
+                                    <option value="Matting">Matting</option>
+                                    <option value="Visor">Visor</option>
+                                    <option value="Off-Road">Off-Road Specs</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Price Value (PHP)</label>
+                                <input type="number" id="prod-price" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-mono">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Initial Bounds</label>
+                                <input type="number" id="prod-stock" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Default Fallback Icon</label>
+                                <select id="prod-icon" class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-bold">
+                                    <option value="fa-shield-halved">Matting Shield</option>
+                                    <option value="fa-cloud-showers-heavy">Visor Guard</option>
+                                    <option value="fa-truck-monster">Off-Road Gear</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Product Media Asset</label>
+                            <input type="file" id="prod-image" accept="image/*" class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2 text-[11px] text-slate-400 file:mr-3 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-slate-800 file:text-white hover:file:bg-slate-700 file:transition">
+                            <span class="block text-[9px] text-slate-500 mt-1 leading-normal">Notice: Compress images prior to input to preserve browser cache limits.</span>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black text-xs uppercase tracking-widest py-3 rounded-md transition shadow-md">Commit Matrix Entry</button>
+                    </form>
+                </div>
+
+                <!-- Inventory Control Framework Matrix -->
+                <div class="metallic-card p-6 rounded-xl lg:col-span-2 space-y-4 overflow-x-auto shadow-xl">
+                    <h3 class="text-md font-black uppercase tracking-wider text-rose-500 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-boxes-stacked"></i> Operational Grid</h3>
+                    <table class="w-full text-left border-collapse min-w-[500px]">
+                        <thead>
+                            <tr class="border-b metallic-border text-[10px] uppercase text-slate-400 tracking-widest font-black">
+                                <th class="pb-3">Component Identifier</th>
+                                <th class="pb-3">Grouping</th>
+                                <th class="pb-3">Price Set</th>
+                                <th class="pb-3 text-center">In-Stock Threshold</th>
+                                <th class="pb-3 text-right">Commands</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-inventory-rows" class="text-xs divide-y divide-slate-800 font-medium">
+                            <!-- Populated runtime data strings -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Transactional Order Streams Queue -->
+            <div class="metallic-card p-6 rounded-xl space-y-4 overflow-x-auto shadow-xl">
+                <h3 class="text-md font-black uppercase tracking-wider text-purple-400 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-arrow-pulse"></i> Inbound Signal Pipeline</h3>
+                <table class="w-full text-left border-collapse min-w-[600px]">
+                    <thead>
+                        <tr class="border-b metallic-border text-[10px] uppercase text-slate-400 tracking-widest font-black">
+                            <th class="pb-3">Signal ID</th>
+                            <th class="pb-3">Account Vector</th>
+                            <th class="pb-3">Items Summary Block</th>
+                            <th class="pb-3">Computed Cost</th>
+                            <th class="pb-3">Status Flag</th>
+                            <th class="pb-3 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-order-rows" class="text-xs divide-y divide-slate-800 font-medium">
+                        <!-- Loaded state vectors -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER DESIGN -->
+    <footer class="bg-[#090b0e] border-t-2 metallic-border mt-24 text-xs text-slate-500 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="space-y-3">
+                <div class="flex items-center space-x-2">
+                    <div class="w-6 h-6 rounded-full brand-logo-disk opacity-70"></div>
+                    <span class="text-sm font-black text-slate-300 uppercase tracking-tight"><span class="text-rose-500">AUTO</span>CRAFTS</span>
+                </div>
+                <p class="leading-relaxed text-[11px] text-slate-400">High-fitment localized components designed to preserve and augment vehicular structures under load environments.</p>
+            </div>
+            <div>
+                <span class="text-xs font-black uppercase tracking-widest text-slate-300 block mb-3">Facility Vector</span>
+                <p class="mb-1.5 text-slate-400 flex items-center"><i class="fa-solid fa-location-dot mr-2 text-rose-500"></i> Quezon City, Philippines</p>
+                <p class="text-slate-400 flex items-center"><i class="fa-solid fa-phone mr-2 text-blue-500"></i> 0920 498 5635</p>
+            </div>
+            <div>
+                <span class="text-xs font-black uppercase tracking-widest text-slate-300 block mb-3">Remote Operations Gateway</span>
+                <a href="https://shopee.ph" target="_blank" class="text-blue-500 hover:text-blue-400 transition font-bold flex items-center gap-1.5"><i class="fa-solid fa-cart-flatbed-suitcase"></i> External Shopee Matrix Storefront</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SHARED DIALOG ACCOUNT MODAL -->
+    <div id="login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="metallic-card rounded-xl max-w-sm w-full p-6 relative">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-500 hover:text-slate-300 text-xl font-bold transition">&times;</button>
+            <div class="text-center mb-6">
+                <h3 id="modal-title" class="text-xl font-black tracking-tight uppercase text-white">Shopper Gateway</h3>
+                <p id="modal-desc" class="text-[11px] text-slate-400 mt-1">Provide data access profile credentials.</p>
+            </div>
+            <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Email Node Address</label>
+                    <input type="text" id="login-user" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-rose-500 font-medium">
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Key Phrase Token</label>
+                    <input type="password" id="login-pass" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-rose-500 font-mono">
+                </div>
+                <div class="text-xs text-amber-500 font-bold hidden" id="login-feedback"></div>
+                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white font-black text-xs uppercase tracking-widest py-3.5 rounded-md transition border border-rose-500 shadow-md">Validate Access Vector</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODERN USER BASKET DRAWER -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex justify-end">
+        <div class="bg-[#0b0e12] w-full max-w-md h-full p-6 border-l-2 metallic-border flex flex-col justify-between overflow-y-auto shadow-2xl">
+            <div>
+                <div class="flex items-center justify-between border-b metallic-border pb-4 mb-6">
+                    <h3 class="text-lg font-black uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-basket-shopping text-blue-500"></i> Selected Matrix</h3>
+                    <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white text-2xl font-bold transition">&times;</button>
+                </div>
+                <!-- Cart Items Container -->
+                <div id="cart-items-container" class="space-y-4">
+                    <!-- Dynamic state vectors -->
+                </div>
+            </div>
+
+            <!-- Total Sheet Area -->
+            <div class="border-t metallic-border pt-6 mt-6 space-y-4">
+                <div class="flex justify-between items-center text-xs font-black uppercase tracking-widest">
+                    <span class="text-slate-400">Total Computed Cost</span>
+                    <span id="cart-total" class="text-xl font-black text-white font-mono">₱0</span>
+                </div>
+                <button onclick="processCheckout()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black text-xs uppercase tracking-widest py-4 rounded-md transition shadow-lg">
+                    Execute Pipeline Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CODE SCRIPT FRAMEWORK ENGINE -->
+    <script>
+        // Set Default Core Data Mock Database Structures (Utilizing data structures from input history template updates)
+        const defaultProducts = [
+            { id: 1, name: "Premium Deep Dish Diamond Matting Matrix", category: "Matting", price: 3500, stock: 24, icon: "fa-shield-halved", image: "" },
+            { id: 2, name: "Aerodynamic Heavy Rain Visor Frame Set", category: "Visor", price: 1200, stock: 45, icon: "fa-cloud-showers-heavy", image: "" },
+            { id: 3, name: "Off-Road Custom Side Step Steel Rails", category: "Off-Road", price: 8500, stock: 8, icon: "fa-truck-monster", image: "" },
+            { id: 4, name: "All-Weather Heavy Duty Trunk Bed Armor", category: "Matting", price: 2200, stock: 15, icon: "fa-shield-halved", image: "" }
+        ];
+
+        let products = JSON.parse(localStorage.getItem('ac_products')) || defaultProducts;
+        let cart = JSON.parse(localStorage.getItem('ac_cart')) || [];
+        let orders = JSON.parse(localStorage.getItem('ac_orders')) || [];
+        
+        let currentUser = localStorage.getItem('ac_current_user') || "Guest Shopper";
+        let isAdminTarget = false;
+
+        // Visual Display System Navigator
+        function showSection(sectionId) {
+            document.getElementById('home-section').classList.add('hidden');
+            document.getElementById('services-section').classList.add('hidden');
+            document.getElementById('shop-section').classList.add('hidden');
+            document.getElementById('admin-section').classList.add('hidden');
+
+            document.getElementById(`${sectionId}-section`).classList.remove('hidden');
+
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                if(link.textContent.toLowerCase().includes(sectionId)) {
+                    link.classList.add('text-white', 'border-b-2', 'border-rose-600');
+                    link.classList.remove('text-slate-400');
+                } else {
+                    link.classList.remove('text-white', 'border-b-2', 'border-rose-600');
+                    link.classList.add('text-slate-400');
+                }
+            });
+        }
+
+        // Authentication Methods
+        function openLoginModal(adminContext = false) {
+            isAdminTarget = adminContext;
+            const modal = document.getElementById('login-modal');
+            const title = document.getElementById('modal-title');
+            const desc = document.getElementById('modal-desc');
+            const fb = document.getElementById('login-feedback');
+            
+            fb.classList.add('hidden');
+            modal.classList.remove('hidden');
+
+            if(isAdminTarget) {
+                title.innerText = "Console Operations Authorization";
+                desc.innerText = "Provide core system keys to establish secure console sessions.";
+                document.getElementById('login-user').value = "admin";
+                document.getElementById('login-pass').value = "admin123";
+            } else {
+                title.innerText = "Account Authentication Vector";
+                desc.innerText = "Restore structural records and verify local baskets.";
+                document.getElementById('login-user').value = "shopper@autocrafts.ph";
+                document.getElementById('login-pass').value = "buyer123";
+            }
+        }
+
+        function closeLoginModal() {
+            document.getElementById('login-modal').classList.add('hidden');
+        }
+
+        function handleLoginSubmit(event) {
+            event.preventDefault();
+            const user = document.getElementById('login-user').value;
+            const pass = document.getElementById('login-pass').value;
+
+            if (isAdminTarget) {
+                if (user === "admin" && pass === "admin123") {
+                    document.getElementById('login-modal').classList.add('hidden');
+                    showSection('admin');
+                } else {
+                    const fb = document.getElementById('login-feedback');
+                    fb.innerText = "Authorization Error: Incorrect credentials provided.";
+                    fb.classList.remove('hidden');
+                }
+            } else {
+                currentUser = user;
+                localStorage.setItem('ac_current_user', currentUser);
+                alert(`Session loaded successfully for user: ${user}`);
+                document.getElementById('login-modal').classList.add('hidden');
+                showSection('shop');
+            }
+        }
+
+        function logoutAdmin() {
+            showSection('home');
+        }
+
+        // Basket Operations Module
+        function toggleCartModal() {
+            const drawer = document.getElementById('cart-modal');
+            drawer.classList.toggle('hidden');
+            if(!drawer.classList.contains('hidden')) {
+                renderCartSheet();
+            }
+        }
+
+        function addToCart(productId) {
+            const item = products.find(p => p.id === productId);
+            if (!item || item.stock <= 0) {
+                alert("Data Line Alert: Requested node contains insufficient storage boundaries.");
+                return;
+            }
+
+            const activeCartIndex = cart.findIndex(c => c.id === productId);
+            if (activeCartIndex > -1) {
+                if(cart[activeCartIndex].qty >= item.stock) {
+                    alert(`Bound Exception: Request configuration exceeds limit threshold values.`);
+                    return;
+                }
+                cart[activeCartIndex].qty++;
+            } else {
+                cart.push({ id: item.id, name: item.name, price: item.price, qty: 1, icon: item.icon, image: item.image });
+            }
+
+            syncStorageAndRefresh();
+            updateCartBadge();
+        }
+
+        function changeCartQty(productId, delta) {
+            const cartIndex = cart.findIndex(c => c.id === productId);
+            const baseProd = products.find(p => p.id === productId);
+
+            if (cartIndex > -1) {
+                cart[cartIndex].qty += delta;
+                if(baseProd && cart[cartIndex].qty > baseProd.stock) {
+                    alert(`Bounds mismatch: Adjusting allocation limits to max threshold (${baseProd.stock}).`);
+                    cart[cartIndex].qty = baseProd.stock;
+                }
+                if (cart[cartIndex].qty <= 0) {
+                    cart.splice(cartIndex, 1);
+                }
+                syncStorageAndRefresh();
+                renderCartSheet();
+                updateCartBadge();
+            }
+        }
+
+        function updateCartBadge() {
+            const totalItemsCount = cart.reduce((acc, c) => acc + c.qty, 0);
+            const badge = document.getElementById('cart-badge');
+            if(totalItemsCount > 0) {
+                badge.innerText = totalItemsCount;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function renderCartSheet() {
+            const container = document.getElementById('cart-items-container');
+            const totalLabel = document.getElementById('cart-total');
+            container.innerHTML = '';
+            
+            if(cart.length === 0) {
+                container.innerHTML = `<p class="text-slate-500 text-xs text-center py-8 font-medium">No components staged for processing pipeline execution.</p>`;
+                totalLabel.innerText = "₱0";
+                return;
+            }
+
+            let cartSum = 0;
+            cart.forEach(c => {
+                cartSum += (c.price * c.qty);
+                const itemRow = document.createElement('div');
+                itemRow.className = "flex items-center justify-between bg-slate-900 p-4 rounded-lg border border-slate-800";
+                
+                const thumbnail = c.image 
+                    ? `<img src="${c.image}" class="w-10 h-10 object-cover rounded border border-slate-700">`
+                    : `<div class="w-10 h-10 bg-[#0a0c0f] rounded flex items-center justify-center border border-slate-800"><i class="fa-solid ${c.icon} text-slate-500 text-sm"></i></div>`;
+
+                itemRow.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        ${thumbnail}
+                        <div>
+                            <h4 class="text-xs font-black line-clamp-1 uppercase text-slate-200">${c.name}</h4>
+                            <p class="text-[10px] font-mono text-slate-400 mt-0.5">₱${c.price.toLocaleString()}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="flex items-center bg-[#07090c] border border-slate-700 rounded">
+                            <button onclick="changeCartQty(${c.id}, -1)" class="px-2 py-1 text-xs text-slate-400 hover:text-white transition">-</button>
+                            <span class="px-1 font-mono text-xs w-6 text-center text-slate-200">${c.qty}</span>
+                            <button onclick="changeCartQty(${c.id}, 1)" class="px-2 py-1 text-xs text-slate-400 hover:text-white transition">+</button>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-white w-20 text-right">₱${(c.price * c.qty).toLocaleString()}</span>
+                    </div>
+                `;
+                container.appendChild(itemRow);
+            });
+            totalLabel.innerText = `₱${cartSum.toLocaleString()}`;
+        }
+
+        function processCheckout() {
+            if(cart.length === 0) return;
+
+            let errorFlag = false;
+            cart.forEach(c => {
+                const matchedStock = products.find(p => p.id === c.id);
+                if(!matchedStock || matchedStock.stock < c.qty) {
+                    alert(`Data Mismatch: Internal bounds verification failed for item vector: ${c.name}`);
+                    errorFlag = true;
+                }
+            });
+
+            if(errorFlag) return;
+
+            cart.forEach(c => {
+                const target = products.find(p => p.id === c.id);
+                target.stock -= c.qty;
+            });
+
+            const incomingSum = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const newOrder = {
+                orderId: "AC-" + Math.floor(100000 + Math.random() * 900000),
+                customer: currentUser,
+                itemsSummary: cart.map(c => `${c.qty}x ${c.name}`).join(", "),
+                total: incomingSum,
+                status: "Pending",
+                totalQty: cart.reduce((sum, item) => sum + item.qty, 0)
+            };
+
+            orders.push(newOrder);
+            cart = [];
+
+            syncStorageAndRefresh();
+            updateCartBadge();
+            toggleCartModal();
+            alert("Success: Configuration logs processed into administrative queue pipelines.");
+        }
+
+        // Display Render Catalogs UI Overhaul
+        function renderShopItems(itemsToRender = products) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            itemsToRender.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "metallic-card rounded-xl overflow-hidden flex flex-col justify-between transition transform hover:-translate-y-1.5 duration-300";
+                
+                const imageLayout = p.image 
+                    ? `<div class="h-48 w-full overflow-hidden border-b border-slate-800 bg-slate-950 relative">
+                            <img src="${p.image}" class="w-full h-full object-cover">
+                       </div>`
+                    : `<div class="p-6 text-center border-b border-slate-800 bg-slate-950/60 h-48 flex flex-col items-center justify-center relative">
+                        <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:12px_12px] opacity-30"></div>
+                        <i class="fa-solid ${p.icon} text-4xl text-slate-600 mb-3 relative z-10"></i>
+                        <span class="text-[9px] font-black uppercase text-slate-500 tracking-widest relative z-10 border border-slate-800 px-2 py-0.5 rounded bg-slate-900">${p.category}</span>
+                       </div>`;
+
+                card.innerHTML = `
+                    ${imageLayout}
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-1.5">
+                            <h4 class="font-black text-xs uppercase tracking-tight text-slate-100 line-clamp-2">${p.name}</h4>
+                            <p class="text-[10px] text-slate-400 font-medium">Bounds: ${p.stock > 0 ? p.stock + ' units' : '<span class="text-rose-500 font-bold uppercase tracking-wide">Out of allocation</span>'}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 border-t border-slate-800/60">
+                            <span class="text-md font-mono font-black text-white">₱${p.price.toLocaleString()}</span>
+                            <button onclick="addToCart(${p.id})" ${p.stock === 0 ? 'disabled' : ''} class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 disabled:from-slate-800 disabled:to-slate-800 disabled:border-slate-700 text-white font-bold p-2.5 rounded-lg transition shadow">
+                                <i class="fa-solid fa-cart-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterShop(category) {
+            if (category === 'all') {
+                renderShopItems(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderShopItems(filtered);
+            }
+        }
+
+        // Administrative View Row Rendering
+        function renderAdminInventory() {
+            const container = document.getElementById('admin-inventory-rows');
+            container.innerHTML = '';
+
+            products.forEach(p => {
+                const row = document.createElement('tr');
+                row.className = "hover:bg-slate-900/60 transition border-b border-slate-800/40";
+
+                const rowThumb = p.image 
+                    ? `<img src="${p.image}" class="w-9 h-9 object-cover rounded border border-slate-700">`
+                    : `<div class="w-9 h-9 bg-[#0b0e12] rounded flex items-center justify-center border border-slate-800"><i class="fa-solid ${p.icon} text-slate-500 text-xs"></i></div>`;
+
+                row.innerHTML = `
+                    <td class="py-3.5 pr-3 font-black text-slate-200 flex items-center gap-3 uppercase tracking-tight">
+                        ${rowThumb}
+                        <span class="line-clamp-1 max-w-xs">${p.name}</span>
+                    </td>
+                    <td class="py-3.5 px-3 text-slate-400 font-bold text-[11px] uppercase">${p.category}</td>
+                    <td class="py-3.5 px-3 text-white font-mono font-bold">₱${p.price.toLocaleString()}</td>
+                    <td class="py-3.5 px-3 text-center">
+                        <div class="flex items-center justify-center space-x-2">
+                            <button onclick="adjustStock(${p.id}, -1)" class="bg-slate-800 border border-slate-700 text-xs px-2 py-0.5 rounded text-slate-400 hover:text-white transition">-</button>
+                            <span class="w-8 inline-block font-mono text-slate-200 font-bold">${p.stock}</span>
+                            <button onclick="adjustStock(${p.id}, 1)" class="bg-slate-800 border border-slate-700 text-xs px-2 py-0.5 rounded text-slate-400 hover:text-white transition">+</button>
+                        </div>
+                    </td>
+                    <td class="py-3.5 pl-3 text-right">
+                        <button onclick="deleteProduct(${p.id})" class="text-rose-500 hover:text-rose-400 text-xs font-black uppercase tracking-wider transition"><i class="fa-solid fa-trash-can mr-1"></i> Purge</button>
+                    </td>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function renderAdminOrders() {
+            const container = document.getElementById('admin-order-rows');
+            container.innerHTML = '';
+
+            if (orders.length === 0) {
+                container.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-500 text-xs font-medium">No transmission data packages recorded in queue channels.</td></tr>`;
+                return;
+            }
+
+            orders.forEach((o, index) => {
+                let statusBadgeColor = "text-amber-400 bg-amber-500/10 border border-amber-500/20";
+                if(o.status === "Dispatched/Approved") statusBadgeColor = "text-emerald-400 bg-emerald-500/10 border border-emerald-500/20";
+                if(o.status === "Cancelled") statusBadgeColor = "text-slate-500 bg-slate-500/10 border border-slate-500/20";
+
+                const row = document.createElement('tr');
+                row.className = "hover:bg-slate-900/60 transition border-b border-slate-800/40";
+                row.innerHTML = `
+                    <td class="py-4 pr-3 font-mono font-bold text-xs text-blue-400">${o.orderId}</td>
+                    <td class="py-4 px-3 text-slate-200 font-bold">${o.customer}</td>
+                    <td class="py-4 px-3 text-slate-400 max-w-xs truncate" title="${o.itemsSummary}">${o.itemsSummary}</td>
+                    <td class="py-4 px-3 text-white font-mono font-bold">₱${o.total.toLocaleString()}</td>
+                    <td class="py-4 px-3"><span class="px-2.5 py-0.5 rounded text-[9px] font-black uppercase tracking-widest ${statusBadgeColor}">${o.status}</span></td>
+                    <td class="py-4 pl-3 text-right space-x-2.5">
+                        ${o.status === "Pending" ? `
+                            <button onclick="updateOrderStatus(${index}, 'Dispatched/Approved')" class="text-emerald-400 hover:text-emerald-300 text-xs font-black uppercase tracking-wider transition">Approve</button>
+                            <button onclick="updateOrderStatus(${index}, 'Cancelled')" class="text-slate-500 hover:text-slate-400 text-xs font-bold uppercase tracking-wider transition">Void</button>
+                        ` : `<span class="text-[10px] text-slate-600 italic font-bold uppercase tracking-wider">Committed</span>`}
+                    </td>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function renderAdminMetrics() {
+            const verifiedOrders = orders.filter(o => o.status === "Dispatched/Approved");
+            const runningRevenue = verifiedOrders.reduce((sum, o) => sum + o.total, 0);
+            const runningQty = verifiedOrders.reduce((sum, o) => sum + o.totalQty, 0);
+
+            document.getElementById('admin-revenue').innerText = `₱${runningRevenue.toLocaleString()}`;
+            document.getElementById('admin-units-sold').innerText = `${runningQty} pcs`;
+            document.getElementById('admin-orders-count').innerText = orders.length;
+        }
+
+        function updateOrderStatus(index, newStatus) {
+            orders[index].status = newStatus;
+            syncStorageAndRefresh();
+        }
+
+        function addNewProduct(event) {
+            event.preventDefault();
+            const name = document.getElementById('prod-name').value;
+            const category = document.getElementById('prod-cat').value;
+            const price = parseFloat(document.getElementById('prod-price').value);
+            const stock = parseInt(document.getElementById('prod-stock').value);
+            const icon = document.getElementById('prod-icon').value;
+            const imageFileInput = document.getElementById('prod-image').files[0];
+
+            if (imageFileInput) {
+                const reader = new FileReader();
+                reader.onloadend = function () {
+                    finalizeProductCreation(name, category, price, stock, icon, reader.result);
+                };
+                reader.readAsDataURL(imageFileInput);
+            } else {
+                finalizeProductCreation(name, category, price, stock, icon, "");
+            }
+        }
+
+        function finalizeProductCreation(name, category, price, stock, icon, imageString) {
+            const newProduct = { id: Date.now(), name, category, price, stock, icon, image: imageString };
+            
+            try {
+                products.unshift(newProduct);
+                syncStorageAndRefresh();
+                document.getElementById('add-product-form').reset();
+                alert("Success: Matrix listing configuration deployed.");
+            } catch (error) {
+                alert("Cache Bounds Exception: Media asset file footprint is too heavy.");
+                products.shift();
+            }
+        }
+
+        function adjustStock(productId, amount) {
+            const target = products.find(p => p.id === productId);
+            if(target) {
+                target.stock = Math.max(0, target.stock + amount);
+                syncStorageAndRefresh();
+            }
+        }
+
+        function deleteProduct(productId) {
+            if(confirm("Confirm structural array row purge operation?")) {
+                products = products.filter(p => p.id !== productId);
+                syncStorageAndRefresh();
+            }
+        }
+
+        function syncStorageAndRefresh() {
+            localStorage.setItem('ac_products', JSON.stringify(products));
+            localStorage.setItem('ac_cart', JSON.stringify(cart));
+            localStorage.setItem('ac_orders', JSON.stringify(orders));
+            
+            renderShopItems();
+            renderAdminInventory();
+            renderAdminOrders();
+            renderAdminMetrics();
+        }
+
+        window.onload = function() {
+            renderShopItems();
+            renderAdminInventory();
+            renderAdminOrders();
+            renderAdminMetrics();
+            updateCartBadge();
+        }
+    </script>
+</body>
+</html>
