@@ -9,7 +9,6 @@
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* UI Base Themes Derived from image_ffeaa5.jpg */
         body { background-color: #0b0d10; }
         .metallic-card { 
             background: linear-gradient(145deg, #181b22, #111318);
@@ -17,14 +16,15 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
         .metallic-border { border-color: #475569; }
-        .logo-text-auto { color: #e11d48; font-family: 'Impact', 'Arial Black', sans-serif; tracking: -0.05em; }
-        .logo-text-crafts { color: #2563eb; font-family: 'Impact', 'Arial Black', sans-serif; tracking: -0.05em; }
+        .logo-text-auto { color: #e11d48; font-family: 'Impact', 'Arial Black', sans-serif; }
+        .logo-text-crafts { color: #2563eb; font-family: 'Impact', 'Arial Black', sans-serif; }
         
-        /* Custom styling for the embedded logo container */
+        /* Fixed Local Image Handler referencing image_ffeaa5.jpg verbatim */
         .brand-logo-disk {
             background-image: url('image_ffeaa5.jpg');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
         }
     </style>
 </head>
@@ -35,10 +35,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-24">
                 <div class="flex items-center space-x-4">
-                    <!-- Brand Identity containing verification image_ffeaa5.jpg as component -->
+                    <!-- Brand Identity Layer using image_ffeaa5.jpg verbatim -->
                     <div class="flex items-center space-x-3 cursor-pointer" onclick="showSection('home')">
-                        <div class="w-14 h-14 rounded-full brand-logo-disk border-2 border-slate-400 shadow-inner"></div>
-                        <div>
+                        <div class="w-14 h-14 rounded-full brand-logo-disk border-2 border-slate-400 shadow-inner flex items-center justify-center bg-slate-900">
+                            <!-- Graphical Fallback icon displays underneath if image_ffeaa5.jpg path isn't local -->
+                            <i class="fa-solid fa-gear text-slate-600 text-xl absolute z-0"></i>
+                        </div>
+                        <div class="relative z-10">
                             <div class="text-2xl font-black uppercase tracking-tight flex items-center leading-none">
                                 <span class="logo-text-auto">AUTO</span>
                                 <span class="logo-text-crafts ml-1">CRAFTS</span>
@@ -46,11 +49,12 @@
                             <span class="block text-[10px] text-slate-400 font-bold tracking-[0.25em] uppercase mt-0.5">& Upgrades</span>
                         </div>
                     </div>
-                    <div class="hidden md:block ml-10">
-                        <div class="flex space-x-8">
-                            <button onclick="showSection('home')" class="nav-link text-white border-b-2 border-rose-600 px-1 py-2 text-sm font-black uppercase tracking-wider">Home</button>
-                            <button onclick="showSection('services')" class="nav-link text-slate-400 hover:text-white px-1 py-2 text-sm font-black uppercase tracking-wider transition">Services</button>
-                            <button onclick="showSection('shop')" class="nav-link text-slate-400 hover:text-white px-1 py-2 text-sm font-black uppercase tracking-wider transition">Shop</button>
+                    <div class="hidden lg:block ml-10">
+                        <div class="flex space-x-6">
+                            <button onclick="showSection('home')" class="nav-link text-white border-b-2 border-rose-600 px-1 py-2 text-xs font-black uppercase tracking-wider">Home</button>
+                            <button onclick="showSection('services')" class="nav-link text-slate-400 hover:text-white px-1 py-2 text-xs font-black uppercase tracking-wider transition">Services</button>
+                            <button onclick="showSection('shop')" class="nav-link text-slate-400 hover:text-white px-1 py-2 text-xs font-black uppercase tracking-wider transition">Shop Catalog</button>
+                            <button onclick="redirectToShopee()" class="text-amber-500 hover:text-amber-400 px-1 py-2 text-xs font-black uppercase tracking-wider transition"><i class="fa-solid fa-bag-shopping mr-1"></i> Shopee PH</button>
                         </div>
                     </div>
                 </div>
@@ -72,7 +76,7 @@
 
         <!-- HOME SECTION -->
         <section id="home-section" class="space-y-12">
-            <!-- Hero Banner -->
+            <!-- Hero Banner Container -->
             <div class="relative bg-gradient-to-br from-slate-900 via-[#13161c] to-slate-900 rounded-2xl overflow-hidden border-2 metallic-border min-h-[400px] flex items-center p-8 md:p-12 shadow-2xl">
                 <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e11d48_1px,transparent_1px)] [background-size:16px_16px]"></div>
                 <div class="relative z-20 max-w-2xl space-y-6">
@@ -80,43 +84,43 @@
                         <span class="w-2 h-2 rounded-full bg-rose-600 animate-pulse"></span>
                         <span>Premium Mechanical Enhancements</span>
                     </div>
-                    <h1 class="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-none">
-                        Precision <span class="text-rose-600">Upgrades</span> For Your Machine
+                    <h1 class="text-5xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none">
+                        Precision <span class="text-rose-600">Upgrades</span> For Your Vehicle
                     </h1>
-                    <p class="text-slate-400 text-base md:text-lg leading-relaxed">
-                        Explore professional-grade components curated for maximum durability. From custom deep dish matting layouts to ruggedized trail components.
+                    <p class="text-slate-400 text-sm md:text-base leading-relaxed">
+                        Explore professional-grade components curated for maximum durability. From custom deep dish matting layouts to sleek aerodynamic rain visors and utility dampers.
                     </p>
                     <div class="flex flex-wrap gap-4 pt-2">
                         <button onclick="showSection('shop')" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black px-8 py-3.5 rounded-lg uppercase tracking-wider text-xs shadow-lg transition">Launch Catalog</button>
-                        <button onclick="showSection('services')" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 font-black px-8 py-3.5 rounded-lg uppercase tracking-wider text-xs transition">Our Specializations</button>
+                        <button onclick="redirectToShopee()" class="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 border border-amber-500 text-white font-black px-8 py-3.5 rounded-lg uppercase tracking-wider text-xs transition shadow-md"><i class="fa-solid fa-bag-shopping mr-2"></i>Order Directly via Shopee</button>
                     </div>
                 </div>
-                <!-- Large Right Accent Graphic matching image_ffeaa5.jpg asset profile -->
+                <!-- Right Accent Vector referencing image_ffeaa5.jpg verbatim -->
                 <div class="hidden lg:flex absolute right-12 top-1/2 -translate-y-1/2 w-80 h-80 opacity-25 rounded-full brand-logo-disk border-4 border-slate-700 pointer-events-none mix-blend-luminosity"></div>
             </div>
 
-            <!-- Value Propositions Panels -->
+            <!-- Value Proposition Panels -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="metallic-card p-6 rounded-xl text-center space-y-3">
                     <div class="w-12 h-12 bg-rose-600/10 border border-rose-500/30 rounded-lg flex items-center justify-center mx-auto">
                         <i class="fa-solid fa-shield-halved text-2xl text-rose-500"></i>
                     </div>
-                    <h3 class="text-md font-black uppercase tracking-wider text-slate-200">Premium Matting</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Custom floor matrices configured for flawless structural coverage and containment.</p>
+                    <h3 class="text-md font-black uppercase tracking-wider text-slate-200">Custom Sizing</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Floor matrices and protection trays laser-cut for flawless fitment and structural coverage.</p>
                 </div>
                 <div class="metallic-card p-6 rounded-xl text-center space-y-3">
                     <div class="w-12 h-12 bg-blue-600/10 border border-blue-500/30 rounded-lg flex items-center justify-center mx-auto">
-                        <i class="fa-solid fa-cloud-showers-heavy text-2xl text-blue-500"></i>
+                        <i class="fa-solid fa-screwdriver-wrench text-2xl text-blue-500"></i>
                     </div>
-                    <h3 class="text-md font-black uppercase tracking-wider text-slate-200">Rain Visors</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Aerodynamic structures profile-matched to minimize fluid resistance and cabin turbulence.</p>
+                    <h3 class="text-md font-black uppercase tracking-wider text-slate-200">Utility Dampers</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Heavy-duty assist extensions built to minimize shock loads on hoods and tailgates.</p>
                 </div>
                 <div class="metallic-card p-6 rounded-xl text-center space-y-3">
                     <div class="w-12 h-12 bg-rose-600/10 border border-rose-500/30 rounded-lg flex items-center justify-center mx-auto">
                         <i class="fa-solid fa-truck-monster text-2xl text-rose-500"></i>
                     </div>
-                    <h3 class="text-md font-black uppercase tracking-wider text-slate-200">Off-Road Ready</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Heavy-duty reinforcements engineered to survive hostile environments and structural overloads.</p>
+                    <h3 class="text-md font-black uppercase tracking-wider text-slate-200">Exterior Armor</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Stepboards, rail guards, and spoiler elements engineered to endure hostile road debris.</p>
                 </div>
             </div>
         </section>
@@ -125,46 +129,54 @@
         <section id="services-section" class="hidden space-y-8">
             <div class="border-b metallic-border pb-4">
                 <h2 class="text-3xl font-black uppercase tracking-wider">Engineering Services</h2>
-                <p class="text-slate-400 text-xs mt-1">Professional layout, sizing integration, and machinery adjustments.</p>
+                <p class="text-slate-400 text-xs mt-1">Professional layout validation and premium upgrade options mapping.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="metallic-card p-8 rounded-xl flex flex-col justify-between border-t-4 border-t-blue-600">
                     <div class="space-y-4">
-                        <span class="text-[10px] font-black text-blue-500 tracking-widest uppercase bg-blue-950 border border-blue-800 px-2.5 py-1 rounded">Precision Layout</span>
-                        <h3 class="text-xl font-black uppercase tracking-tight text-slate-100">Car Matting Configuration</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">We provide precision sizing checks for specific chassis makes. Our system isolates cabin floor vulnerabilities to assure perfect physical stabilization against fluid leaks or sliding components.</p>
+                        <span class="text-[10px] font-black text-blue-500 tracking-widest uppercase bg-blue-950 border border-blue-800 px-2.5 py-1 rounded">Interior Precision</span>
+                        <h3 class="text-xl font-black uppercase tracking-tight text-slate-100">Matting & Sizing Diagnostics</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">We handle configuration layout confirmation for domestic vehicles. Our systems isolate custom deck metrics to prevent shifting and component wear inside utility cabins.</p>
                     </div>
-                    <button onclick="showSection('shop')" class="mt-6 text-xs font-black uppercase tracking-wider text-rose-500 hover:text-rose-400 transition flex items-center gap-2">Browse Matting Inventory <i class="fa-solid fa-arrow-right"></i></button>
+                    <button onclick="showSection('shop')" class="mt-6 text-xs font-black uppercase tracking-wider text-rose-500 hover:text-rose-400 transition flex items-center gap-2">Browse Deep Dish Lines <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
                 <div class="metallic-card p-8 rounded-xl flex flex-col justify-between border-t-4 border-t-rose-600">
                     <div class="space-y-4">
-                        <span class="text-[10px] font-black text-rose-500 tracking-widest uppercase bg-rose-950 border border-rose-800 px-2.5 py-1 rounded">Utility Fitting</span>
-                        <h3 class="text-xl font-black uppercase tracking-tight text-slate-100">Off-Road Architecture</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Preparing armor matrices for technical paths? We configure external armor layers, modular steps, and mechanical utility points for transport trucks, vans, and tactical utilities.</p>
+                        <span class="text-[10px] font-black text-rose-500 tracking-widest uppercase bg-rose-950 border border-rose-800 px-2.5 py-1 rounded">Utility Fittings</span>
+                        <h3 class="text-xl font-black uppercase tracking-tight text-slate-100">Pneumatic & Mechanical Assist Upgrades</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Staging custom damper mechanisms? We outfit structural assists across hoods and tailgates to regulate kinetic energy loads during heavy manual loading operations.</p>
                     </div>
-                    <a href="https://shopee.ph" target="_blank" class="mt-6 text-xs font-black uppercase tracking-wider text-blue-500 hover:text-blue-400 transition flex items-center gap-2">Inquire via Shopee <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <button onclick="redirectToShopee()" class="mt-6 text-xs font-black uppercase tracking-wider text-blue-500 hover:text-blue-400 transition flex items-center gap-2">Consult via Shopee Matrix <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
                 </div>
             </div>
         </section>
 
         <!-- SHOP SECTION -->
         <section id="shop-section" class="hidden space-y-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b metallic-border pb-4 gap-4">
+            <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center border-b metallic-border pb-4 gap-4">
                 <div>
                     <h2 class="text-3xl font-black uppercase tracking-wider">Product Catalog</h2>
-                    <p class="text-slate-400 text-xs mt-1">Configure your selected items and load your basket.</p>
+                    <p class="text-slate-400 text-xs mt-1">Isolate specific mechanical arrays using our classification filters.</p>
                 </div>
-                <div class="flex flex-wrap gap-2">
-                    <button onclick="filterShop('all')" class="bg-slate-800 hover:bg-slate-700 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-md border border-slate-600 transition">All Items</button>
-                    <button onclick="filterShop('Matting')" class="bg-slate-800 hover:bg-slate-700 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-md border border-slate-600 transition">Matting</button>
-                    <button onclick="filterShop('Visor')" class="bg-slate-800 hover:bg-slate-700 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-md border border-slate-600 transition">Visors</button>
-                    <button onclick="filterShop('Off-Road')" class="bg-slate-800 hover:bg-slate-700 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-md border border-slate-600 transition">Off-Road</button>
+                <!-- Dynamically Filter Menu Buttons Overhaul -->
+                <div class="flex flex-wrap gap-2 max-w-4xl">
+                    <button onclick="filterShop('all')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">All Items</button>
+                    <button onclick="filterShop('Deep Dish Matting')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Deep Dish Matting</button>
+                    <button onclick="filterShop('Rain Visors')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Rain Visors</button>
+                    <button onclick="filterShop('Trunk Trays')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Trunk Trays</button>
+                    <button onclick="filterShop('Hood Lids')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Hood Lids</button>
+                    <button onclick="filterShop('Tailgate Assist')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Tailgate Assist</button>
+                    <button onclick="filterShop('Hood Assist Dampers')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Hood Assist Dampers</button>
+                    <button onclick="filterShop('Rail Guards')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Rail Guards</button>
+                    <button onclick="filterShop('Spoilers')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Spoilers</button>
+                    <button onclick="filterShop('Stepboards')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Stepboards</button>
+                    <button onclick="filterShop('Bed Covers')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Bed Covers</button>
                 </div>
             </div>
 
             <!-- Product Grid -->
             <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Injected dynamically via standard system synchronizations -->
+                <!-- Dynamically generated items -->
             </div>
         </section>
 
@@ -172,31 +184,35 @@
         <section id="admin-section" class="hidden space-y-8">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b metallic-border pb-4 gap-4">
                 <div>
-                    <h2 class="text-3xl font-black uppercase tracking-wider text-rose-600 flex items-center gap-2"><i class="fa-solid fa-gauge-high"></i> Control Console</h2>
-                    <p class="text-slate-400 text-xs mt-1">Live configuration streams, inventory thresholds, and catalog data strings.</p>
+                    <h2 class="text-3xl font-black uppercase tracking-wider text-rose-600 flex items-center gap-2"><i class="fa-solid fa-gauge-high"></i> Operational Control Console</h2>
+                    <p class="text-slate-400 text-xs mt-1">Live data configuration streams, stock allocations, and metrics exporters.</p>
                 </div>
-                <button onclick="logoutAdmin()" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-xs font-black uppercase tracking-wider py-2.5 px-5 rounded-md transition">Exit Console</button>
+                <div class="flex gap-2">
+                    <!-- EXCEL EXTRACTOR ACTION BUTTON -->
+                    <button onclick="exportDataToCSV()" class="bg-emerald-600 hover:bg-emerald-700 border border-emerald-500 text-xs font-black uppercase tracking-wider py-2.5 px-4 rounded-md transition flex items-center gap-2 shadow"><i class="fa-solid fa-file-excel"></i> Export Report to Excel</button>
+                    <button onclick="logoutAdmin()" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-xs font-black uppercase tracking-wider py-2.5 px-4 rounded-md transition">Exit Console</button>
+                </div>
             </div>
 
-            <!-- Administrative System Insights -->
+            <!-- Administrative Financial Metrics -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="metallic-card p-6 rounded-xl flex items-center justify-between border-l-4 border-l-emerald-500">
                     <div>
-                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Aggregated Sales</p>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Total Validated Sales Revenue</p>
                         <h3 id="admin-revenue" class="text-2xl font-black text-emerald-400 mt-1">₱0</h3>
                     </div>
                     <i class="fa-solid fa-money-bill-wave text-3xl text-slate-700"></i>
                 </div>
                 <div class="metallic-card p-6 rounded-xl flex items-center justify-between border-l-4 border-l-blue-500">
                     <div>
-                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Dispatched Units</p>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Dispatched Material Volume</p>
                         <h3 id="admin-units-sold" class="text-2xl font-black text-blue-400 mt-1">0 pcs</h3>
                     </div>
                     <i class="fa-solid fa-boxes-packing text-3xl text-slate-700"></i>
                 </div>
                 <div class="metallic-card p-6 rounded-xl flex items-center justify-between border-l-4 border-l-purple-500">
                     <div>
-                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Processed Signals</p>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Total Structural Orders Logs</p>
                         <h3 id="admin-orders-count" class="text-2xl font-black text-purple-400 mt-1">0</h3>
                     </div>
                     <i class="fa-solid fa-network-wired text-3xl text-slate-700"></i>
@@ -204,122 +220,132 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Add New Product Component Mod -->
+                <!-- Add New Product Form Component -->
                 <div class="metallic-card p-6 rounded-xl h-fit space-y-4 shadow-xl">
-                    <h3 class="text-md font-black uppercase tracking-wider text-blue-400 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-square-plus"></i> Append Listing</h3>
+                    <h3 class="text-md font-black uppercase tracking-wider text-blue-400 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-square-plus"></i> Append Stock Record</h3>
                     <form id="add-product-form" onsubmit="addNewProduct(event)" class="space-y-4">
                         <div>
-                            <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Item Label / Nomenclature</label>
+                            <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Product Designation Name</label>
                             <input type="text" id="prod-name" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-medium">
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Classification</label>
-                                <select id="prod-cat" class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-bold">
-                                    <option value="Matting">Matting</option>
-                                    <option value="Visor">Visor</option>
-                                    <option value="Off-Road">Off-Road Specs</option>
+                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Categorization Array</label>
+                                <select id="prod-cat" class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-[11px] text-white focus:outline-none focus:border-blue-500 font-bold">
+                                    <option value="Deep Dish Matting">Deep Dish Matting</option>
+                                    <option value="Rain Visors">Rain Visors</option>
+                                    <option value="Trunk Trays">Trunk Trays</option>
+                                    <option value="Hood Lids">Hood Lids</option>
+                                    <option value="Tailgate Assist">Tailgate Assist</option>
+                                    <option value="Hood Assist Dampers">Hood Assist Dampers</option>
+                                    <option value="Rail Guards">Rail Guards</option>
+                                    <option value="Spoilers">Spoilers</option>
+                                    <option value="Stepboards">Stepboards</option>
+                                    <option value="Bed Covers">Bed Covers</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Price Value (PHP)</label>
+                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Price Matrix (PHP)</label>
                                 <input type="number" id="prod-price" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-mono">
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Initial Bounds</label>
+                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Stock Limits</label>
                                 <input type="number" id="prod-stock" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-mono">
                             </div>
                             <div>
-                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Default Fallback Icon</label>
+                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Graphic Fallback Key</label>
                                 <select id="prod-icon" class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-bold">
-                                    <option value="fa-shield-halved">Matting Shield</option>
-                                    <option value="fa-cloud-showers-heavy">Visor Guard</option>
-                                    <option value="fa-truck-monster">Off-Road Gear</option>
+                                    <option value="fa-shield-halved">Matting System</option>
+                                    <option value="fa-cloud-showers-heavy">Visor Aero</option>
+                                    <option value="fa-screwdriver-wrench">Damper Unit</option>
+                                    <option value="fa-truck-monster">Exterior Armor</option>
                                 </select>
                             </div>
                         </div>
                         <div>
                             <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Product Media Asset</label>
                             <input type="file" id="prod-image" accept="image/*" class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2 text-[11px] text-slate-400 file:mr-3 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-slate-800 file:text-white hover:file:bg-slate-700 file:transition">
-                            <span class="block text-[9px] text-slate-500 mt-1 leading-normal">Notice: Compress images prior to input to preserve browser cache limits.</span>
                         </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black text-xs uppercase tracking-widest py-3 rounded-md transition shadow-md">Commit Matrix Entry</button>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black text-xs uppercase tracking-widest py-3 rounded-md transition shadow-md">Commit New Stock Node</button>
                     </form>
                 </div>
 
-                <!-- Inventory Control Framework Matrix -->
+                <!-- Active Allocation Management Grid -->
                 <div class="metallic-card p-6 rounded-xl lg:col-span-2 space-y-4 overflow-x-auto shadow-xl">
-                    <h3 class="text-md font-black uppercase tracking-wider text-rose-500 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-boxes-stacked"></i> Operational Grid</h3>
+                    <h3 class="text-md font-black uppercase tracking-wider text-rose-500 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-boxes-stacked"></i> Warehouse Stock Matrix</h3>
                     <table class="w-full text-left border-collapse min-w-[500px]">
                         <thead>
                             <tr class="border-b metallic-border text-[10px] uppercase text-slate-400 tracking-widest font-black">
-                                <th class="pb-3">Component Identifier</th>
-                                <th class="pb-3">Grouping</th>
-                                <th class="pb-3">Price Set</th>
-                                <th class="pb-3 text-center">In-Stock Threshold</th>
+                                <th class="pb-3">Component Label</th>
+                                <th class="pb-3">Classification Class</th>
+                                <th class="pb-3">Unit Valuation</th>
+                                <th class="pb-3 text-center">Available Allocations</th>
                                 <th class="pb-3 text-right">Commands</th>
                             </tr>
                         </thead>
                         <tbody id="admin-inventory-rows" class="text-xs divide-y divide-slate-800 font-medium">
-                            <!-- Populated runtime data strings -->
+                            <!-- Populated dynamic records -->
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Transactional Order Streams Queue -->
+            <!-- Inbound Active Transaction Signal Streams Pipeline -->
             <div class="metallic-card p-6 rounded-xl space-y-4 overflow-x-auto shadow-xl">
-                <h3 class="text-md font-black uppercase tracking-wider text-purple-400 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-arrow-pulse"></i> Inbound Signal Pipeline</h3>
+                <h3 class="text-md font-black uppercase tracking-wider text-purple-400 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-arrow-pulse"></i> Order Ledger Streams Queue</h3>
                 <table class="w-full text-left border-collapse min-w-[600px]">
                     <thead>
                         <tr class="border-b metallic-border text-[10px] uppercase text-slate-400 tracking-widest font-black">
-                            <th class="pb-3">Signal ID</th>
-                            <th class="pb-3">Account Vector</th>
-                            <th class="pb-3">Items Summary Block</th>
-                            <th class="pb-3">Computed Cost</th>
-                            <th class="pb-3">Status Flag</th>
+                            <th class="pb-3">Log ID</th>
+                            <th class="pb-3">User Vector</th>
+                            <th class="pb-3">Items Summary Stack</th>
+                            <th class="pb-3">Computed Ledger Price</th>
+                            <th class="pb-3">Pipeline Status Flag</th>
                             <th class="pb-3 text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="admin-order-rows" class="text-xs divide-y divide-slate-800 font-medium">
-                        <!-- Loaded state vectors -->
+                        <!-- Populated state arrays -->
                     </tbody>
                 </table>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER DESIGN -->
+    <!-- FOOTER DESIGN SECTION -->
     <footer class="bg-[#090b0e] border-t-2 metallic-border mt-24 text-xs text-slate-500 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="space-y-3">
                 <div class="flex items-center space-x-2">
-                    <div class="w-6 h-6 rounded-full brand-logo-disk opacity-70"></div>
+                    <div class="w-6 h-6 rounded-full brand-logo-disk opacity-70 bg-slate-900 flex items-center justify-center relative">
+                        <i class="fa-solid fa-gear text-slate-700 text-3xs absolute"></i>
+                    </div>
                     <span class="text-sm font-black text-slate-300 uppercase tracking-tight"><span class="text-rose-500">AUTO</span>CRAFTS</span>
                 </div>
-                <p class="leading-relaxed text-[11px] text-slate-400">High-fitment localized components designed to preserve and augment vehicular structures under load environments.</p>
+                <p class="leading-relaxed text-[11px] text-slate-400">High-fitment premium automotive arrays configured to protect operational vehicle chassis from localized environmental stress points.</p>
             </div>
             <div>
-                <span class="text-xs font-black uppercase tracking-widest text-slate-300 block mb-3">Facility Vector</span>
-                <p class="mb-1.5 text-slate-400 flex items-center"><i class="fa-solid fa-location-dot mr-2 text-rose-500"></i> Quezon City, Philippines</p>
+                <span class="text-xs font-black uppercase tracking-widest text-slate-300 block mb-3">Facility Coordinates</span>
+                <p class="mb-1.5 text-slate-400 flex items-center"><i class="fa-solid fa-location-dot mr-2 text-rose-500"></i> Quezon City, Metro Manila, Philippines</p>
                 <p class="text-slate-400 flex items-center"><i class="fa-solid fa-phone mr-2 text-blue-500"></i> 0920 498 5635</p>
             </div>
             <div>
-                <span class="text-xs font-black uppercase tracking-widest text-slate-300 block mb-3">Remote Operations Gateway</span>
-                <a href="https://shopee.ph" target="_blank" class="text-blue-500 hover:text-blue-400 transition font-bold flex items-center gap-1.5"><i class="fa-solid fa-cart-flatbed-suitcase"></i> External Shopee Matrix Storefront</a>
+                <span class="text-xs font-black uppercase tracking-widest text-slate-300 block mb-3">External Portals Links</span>
+                <!-- Integrated verified marketplace link tracking redirection target -->
+                <button onclick="redirectToShopee()" class="text-blue-500 hover:text-blue-400 transition font-bold flex items-center gap-1.5"><i class="fa-solid fa-square-arrow-up-right"></i> Verify Official Shopee Matrix Storefront</button>
             </div>
         </div>
     </footer>
 
-    <!-- SHARED DIALOG ACCOUNT MODAL -->
+    <!-- SHARED ACCOUNT MODAL LAYER -->
     <div id="login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="metallic-card rounded-xl max-w-sm w-full p-6 relative">
             <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-500 hover:text-slate-300 text-xl font-bold transition">&times;</button>
             <div class="text-center mb-6">
                 <h3 id="modal-title" class="text-xl font-black tracking-tight uppercase text-white">Shopper Gateway</h3>
-                <p id="modal-desc" class="text-[11px] text-slate-400 mt-1">Provide data access profile credentials.</p>
+                <p id="modal-desc" class="text-[11px] text-slate-400 mt-1">Provide authentication profile keys.</p>
             </div>
             <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
                 <div>
@@ -331,12 +357,12 @@
                     <input type="password" id="login-pass" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-rose-500 font-mono">
                 </div>
                 <div class="text-xs text-amber-500 font-bold hidden" id="login-feedback"></div>
-                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white font-black text-xs uppercase tracking-widest py-3.5 rounded-md transition border border-rose-500 shadow-md">Validate Access Vector</button>
+                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white font-black text-xs uppercase tracking-widest py-3.5 rounded-md transition border border-rose-500 shadow-md">Authorize Vector Token</button>
             </form>
         </div>
     </div>
 
-    <!-- MODERN USER BASKET DRAWER -->
+    <!-- BASKET MODAL DRAWER OVERLAY -->
     <div id="cart-modal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex justify-end">
         <div class="bg-[#0b0e12] w-full max-w-md h-full p-6 border-l-2 metallic-border flex flex-col justify-between overflow-y-auto shadow-2xl">
             <div>
@@ -344,33 +370,32 @@
                     <h3 class="text-lg font-black uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-basket-shopping text-blue-500"></i> Selected Matrix</h3>
                     <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white text-2xl font-bold transition">&times;</button>
                 </div>
-                <!-- Cart Items Container -->
                 <div id="cart-items-container" class="space-y-4">
-                    <!-- Dynamic state vectors -->
+                    <!-- Loaded dynamically -->
                 </div>
             </div>
 
-            <!-- Total Sheet Area -->
+            <!-- Total Processing Sheet -->
             <div class="border-t metallic-border pt-6 mt-6 space-y-4">
                 <div class="flex justify-between items-center text-xs font-black uppercase tracking-widest">
                     <span class="text-slate-400">Total Computed Cost</span>
                     <span id="cart-total" class="text-xl font-black text-white font-mono">₱0</span>
                 </div>
                 <button onclick="processCheckout()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black text-xs uppercase tracking-widest py-4 rounded-md transition shadow-lg">
-                    Execute Pipeline Order
+                    Execute Pipeline Checkout
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- CODE SCRIPT FRAMEWORK ENGINE -->
+    <!-- CORE FUNCTIONAL SYSTEM CONTROLLER -->
     <script>
-        // Set Default Core Data Mock Database Structures (Utilizing data structures from input history template updates)
+        // Updated Default Mock Catalog Framework matching the custom menu taxonomy strings requested
         const defaultProducts = [
-            { id: 1, name: "Premium Deep Dish Diamond Matting Matrix", category: "Matting", price: 3500, stock: 24, icon: "fa-shield-halved", image: "" },
-            { id: 2, name: "Aerodynamic Heavy Rain Visor Frame Set", category: "Visor", price: 1200, stock: 45, icon: "fa-cloud-showers-heavy", image: "" },
-            { id: 3, name: "Off-Road Custom Side Step Steel Rails", category: "Off-Road", price: 8500, stock: 8, icon: "fa-truck-monster", image: "" },
-            { id: 4, name: "All-Weather Heavy Duty Trunk Bed Armor", category: "Matting", price: 2200, stock: 15, icon: "fa-shield-halved", image: "" }
+            { id: 1, name: "Laser-Fit Premium Deep Dish Matting Set", category: "Deep Dish Matting", price: 3800, stock: 14, icon: "fa-shield-halved", image: "" },
+            { id: 2, name: "Aerodynamic Dark Finish Rain Visors Set", category: "Rain Visors", price: 1400, stock: 22, icon: "fa-cloud-showers-heavy", image: "" },
+            { id: 3, name: "Heavy Duty Tailgate Assist Mechanical Damper", category: "Tailgate Assist", price: 2100, stock: 8, icon: "fa-screwdriver-wrench", image: "" },
+            { id: 4, name: "Molded Precision Waterproof Trunk Trays Liner", category: "Trunk Trays", price: 2500, stock: 19, icon: "fa-shield-halved", image: "" }
         ];
 
         let products = JSON.parse(localStorage.getItem('ac_products')) || defaultProducts;
@@ -380,7 +405,12 @@
         let currentUser = localStorage.getItem('ac_current_user') || "Guest Shopper";
         let isAdminTarget = false;
 
-        // Visual Display System Navigator
+        // Shopee Redirect Handler Function
+        function redirectToShopee() {
+            window.open('https://shopee.ph', '_blank');
+        }
+
+        // Section Display Router
         function showSection(sectionId) {
             document.getElementById('home-section').classList.add('hidden');
             document.getElementById('services-section').classList.add('hidden');
@@ -401,7 +431,7 @@
             });
         }
 
-        // Authentication Methods
+        // Administrative Access Module
         function openLoginModal(adminContext = false) {
             isAdminTarget = adminContext;
             const modal = document.getElementById('login-modal');
@@ -413,13 +443,13 @@
             modal.classList.remove('hidden');
 
             if(isAdminTarget) {
-                title.innerText = "Console Operations Authorization";
-                desc.innerText = "Provide core system keys to establish secure console sessions.";
+                title.innerText = "Console Authorization Window";
+                desc.innerText = "Provide administrative root tokens to enable telemetry matrices.";
                 document.getElementById('login-user').value = "admin";
                 document.getElementById('login-pass').value = "admin123";
             } else {
-                title.innerText = "Account Authentication Vector";
-                desc.innerText = "Restore structural records and verify local baskets.";
+                title.innerText = "Shopper Matrix Authentication";
+                desc.innerText = "Synchronize local parameters and verify historic cart buffers.";
                 document.getElementById('login-user').value = "shopper@autocrafts.ph";
                 document.getElementById('login-pass').value = "buyer123";
             }
@@ -440,13 +470,13 @@
                     showSection('admin');
                 } else {
                     const fb = document.getElementById('login-feedback');
-                    fb.innerText = "Authorization Error: Incorrect credentials provided.";
+                    fb.innerText = "Security Alert: Verification token does not match console constraints.";
                     fb.classList.remove('hidden');
                 }
             } else {
                 currentUser = user;
                 localStorage.setItem('ac_current_user', currentUser);
-                alert(`Session loaded successfully for user: ${user}`);
+                alert(`Welcome: Security state authorized for node ${user}`);
                 document.getElementById('login-modal').classList.add('hidden');
                 showSection('shop');
             }
@@ -456,7 +486,7 @@
             showSection('home');
         }
 
-        // Basket Operations Module
+        // Basket Processing Logic
         function toggleCartModal() {
             const drawer = document.getElementById('cart-modal');
             drawer.classList.toggle('hidden');
@@ -468,14 +498,14 @@
         function addToCart(productId) {
             const item = products.find(p => p.id === productId);
             if (!item || item.stock <= 0) {
-                alert("Data Line Alert: Requested node contains insufficient storage boundaries.");
+                alert("Allocation Failure: Specified item has dropped below accessible storage parameters.");
                 return;
             }
 
             const activeCartIndex = cart.findIndex(c => c.id === productId);
             if (activeCartIndex > -1) {
                 if(cart[activeCartIndex].qty >= item.stock) {
-                    alert(`Bound Exception: Request configuration exceeds limit threshold values.`);
+                    alert(`Bound Constraint: Request volume matches ceiling allocation bounds.`);
                     return;
                 }
                 cart[activeCartIndex].qty++;
@@ -494,7 +524,7 @@
             if (cartIndex > -1) {
                 cart[cartIndex].qty += delta;
                 if(baseProd && cart[cartIndex].qty > baseProd.stock) {
-                    alert(`Bounds mismatch: Adjusting allocation limits to max threshold (${baseProd.stock}).`);
+                    alert(`Bounds Adjust: Setting limit allocation markers to standard max (${baseProd.stock}).`);
                     cart[cartIndex].qty = baseProd.stock;
                 }
                 if (cart[cartIndex].qty <= 0) {
@@ -523,7 +553,7 @@
             container.innerHTML = '';
             
             if(cart.length === 0) {
-                container.innerHTML = `<p class="text-slate-500 text-xs text-center py-8 font-medium">No components staged for processing pipeline execution.</p>`;
+                container.innerHTML = `<p class="text-slate-500 text-xs text-center py-8 font-medium">Staging channels empty. Ready... Set... Add to Cart!</p>`;
                 totalLabel.innerText = "₱0";
                 return;
             }
@@ -548,9 +578,9 @@
                     </div>
                     <div class="flex items-center space-x-3">
                         <div class="flex items-center bg-[#07090c] border border-slate-700 rounded">
-                            <button onclick="changeCartQty(${c.id}, -1)" class="px-2 py-1 text-xs text-slate-400 hover:text-white transition">-</button>
+                            <button onclick="changeCartQty(${c.id}, -1)" class="px-2 py-1 text-xs text-slate-400 hover:text-white">-</button>
                             <span class="px-1 font-mono text-xs w-6 text-center text-slate-200">${c.qty}</span>
-                            <button onclick="changeCartQty(${c.id}, 1)" class="px-2 py-1 text-xs text-slate-400 hover:text-white transition">+</button>
+                            <button onclick="changeCartQty(${c.id}, 1)" class="px-2 py-1 text-xs text-slate-400 hover:text-white">+</button>
                         </div>
                         <span class="text-xs font-mono font-bold text-white w-20 text-right">₱${(c.price * c.qty).toLocaleString()}</span>
                     </div>
@@ -567,7 +597,7 @@
             cart.forEach(c => {
                 const matchedStock = products.find(p => p.id === c.id);
                 if(!matchedStock || matchedStock.stock < c.qty) {
-                    alert(`Data Mismatch: Internal bounds verification failed for item vector: ${c.name}`);
+                    alert(`Collision Exception: Internal warehouse checks failed for: ${c.name}`);
                     errorFlag = true;
                 }
             });
@@ -583,7 +613,7 @@
             const newOrder = {
                 orderId: "AC-" + Math.floor(100000 + Math.random() * 900000),
                 customer: currentUser,
-                itemsSummary: cart.map(c => `${c.qty}x ${c.name}`).join(", "),
+                itemsSummary: cart.map(c => `${c.qty}x ${c.name}`).join(" | "),
                 total: incomingSum,
                 status: "Pending",
                 totalQty: cart.reduce((sum, item) => sum + item.qty, 0)
@@ -595,10 +625,10 @@
             syncStorageAndRefresh();
             updateCartBadge();
             toggleCartModal();
-            alert("Success: Configuration logs processed into administrative queue pipelines.");
+            alert("Confirmed: Transmission stream pushed down to processing queue logs.");
         }
 
-        // Display Render Catalogs UI Overhaul
+        // UI Shop Renderer Engine
         function renderShopItems(itemsToRender = products) {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
@@ -622,7 +652,7 @@
                     <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
                         <div class="space-y-1.5">
                             <h4 class="font-black text-xs uppercase tracking-tight text-slate-100 line-clamp-2">${p.name}</h4>
-                            <p class="text-[10px] text-slate-400 font-medium">Bounds: ${p.stock > 0 ? p.stock + ' units' : '<span class="text-rose-500 font-bold uppercase tracking-wide">Out of allocation</span>'}</p>
+                            <p class="text-[10px] text-slate-400 font-medium">Available: ${p.stock > 0 ? p.stock + ' units' : '<span class="text-rose-500 font-bold uppercase tracking-wide">Out of allocation</span>'}</p>
                         </div>
                         <div class="flex items-center justify-between pt-2 border-t border-slate-800/60">
                             <span class="text-md font-mono font-black text-white">₱${p.price.toLocaleString()}</span>
@@ -645,7 +675,7 @@
             }
         }
 
-        // Administrative View Row Rendering
+        // Administrative View Tables Hydrator
         function renderAdminInventory() {
             const container = document.getElementById('admin-inventory-rows');
             container.innerHTML = '';
@@ -663,13 +693,13 @@
                         ${rowThumb}
                         <span class="line-clamp-1 max-w-xs">${p.name}</span>
                     </td>
-                    <td class="py-3.5 px-3 text-slate-400 font-bold text-[11px] uppercase">${p.category}</td>
+                    <td class="py-3.5 px-3 text-slate-400 font-bold text-[10px] uppercase">${p.category}</td>
                     <td class="py-3.5 px-3 text-white font-mono font-bold">₱${p.price.toLocaleString()}</td>
                     <td class="py-3.5 px-3 text-center">
                         <div class="flex items-center justify-center space-x-2">
-                            <button onclick="adjustStock(${p.id}, -1)" class="bg-slate-800 border border-slate-700 text-xs px-2 py-0.5 rounded text-slate-400 hover:text-white transition">-</button>
+                            <button onclick="adjustStock(${p.id}, -1)" class="bg-slate-800 border border-slate-700 text-xs px-2 py-0.5 rounded text-slate-400 hover:text-white">-</button>
                             <span class="w-8 inline-block font-mono text-slate-200 font-bold">${p.stock}</span>
-                            <button onclick="adjustStock(${p.id}, 1)" class="bg-slate-800 border border-slate-700 text-xs px-2 py-0.5 rounded text-slate-400 hover:text-white transition">+</button>
+                            <button onclick="adjustStock(${p.id}, 1)" class="bg-slate-800 border border-slate-700 text-xs px-2 py-0.5 rounded text-slate-400 hover:text-white">+</button>
                         </div>
                     </td>
                     <td class="py-3.5 pl-3 text-right">
@@ -685,7 +715,7 @@
             container.innerHTML = '';
 
             if (orders.length === 0) {
-                container.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-500 text-xs font-medium">No transmission data packages recorded in queue channels.</td></tr>`;
+                container.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-500 text-xs font-medium">No system log files found inside transaction streams.</td></tr>`;
                 return;
             }
 
@@ -706,7 +736,7 @@
                         ${o.status === "Pending" ? `
                             <button onclick="updateOrderStatus(${index}, 'Dispatched/Approved')" class="text-emerald-400 hover:text-emerald-300 text-xs font-black uppercase tracking-wider transition">Approve</button>
                             <button onclick="updateOrderStatus(${index}, 'Cancelled')" class="text-slate-500 hover:text-slate-400 text-xs font-bold uppercase tracking-wider transition">Void</button>
-                        ` : `<span class="text-[10px] text-slate-600 italic font-bold uppercase tracking-wider">Committed</span>`}
+                        ` : `<span class="text-[10px] text-slate-600 italic font-bold uppercase tracking-wider">Locked</span>`}
                     </td>
                 `;
                 container.appendChild(row);
@@ -728,6 +758,7 @@
             syncStorageAndRefresh();
         }
 
+        // Programmatic Form File Processor Module
         function addNewProduct(event) {
             event.preventDefault();
             const name = document.getElementById('prod-name').value;
@@ -755,9 +786,9 @@
                 products.unshift(newProduct);
                 syncStorageAndRefresh();
                 document.getElementById('add-product-form').reset();
-                alert("Success: Matrix listing configuration deployed.");
+                alert("Confirmed: Node parameter injected into active lists array.");
             } catch (error) {
-                alert("Cache Bounds Exception: Media asset file footprint is too heavy.");
+                alert("Cache Overload: The media file sizes are too large to parse into local storage blocks.");
                 products.shift();
             }
         }
@@ -771,12 +802,52 @@
         }
 
         function deleteProduct(productId) {
-            if(confirm("Confirm structural array row purge operation?")) {
+            if(confirm("Confirm row deletion command execution sequence?")) {
                 products = products.filter(p => p.id !== productId);
                 syncStorageAndRefresh();
             }
         }
 
+        // SPREADSHEET (CSV EXCEL) GENERATOR FEATURE
+        function exportDataToCSV() {
+            let csvLines = [];
+            
+            // Generate Warehouse Inventory Sheet Segment
+            csvLines.push("=== WAREHOUSE LIVE INVENTORY REPORT ===");
+            csvLines.push("Product ID,Component Name,Classification Category,Unit Sells Price (PHP),Current Stock Units");
+            products.forEach(p => {
+                // Strip commas out of item names to prevent delimiter misalignment parsing
+                let clearName = p.name.replace(/,/g, " ");
+                csvLines.push(`${p.id},${clearName},${p.category},${p.price},${p.stock}`);
+            });
+
+            csvLines.push("\n"); // line break spacing inside spreadsheet file execution
+            
+            // Generate Sales Ledger Sheet Segment
+            csvLines.push("=== SALES TRANSACTION HISTORIC LOGS ===");
+            csvLines.push("Order Identifier,User Account Node,Items Stacked Description,Total Settlement Value,Transaction Pipeline Status");
+            if(orders.length === 0) {
+                csvLines.push("No processed signal packages verified inside runtime registers.");
+            } else {
+                orders.forEach(o => {
+                    let clearSummary = o.itemsSummary.replace(/,/g, " ");
+                    csvLines.push(`${o.orderId},${o.customer},${clearSummary},${o.total},${o.status}`);
+                });
+            }
+
+            // Convert string block into data download matrix element mapping
+            const csvContent = "data:text/csv;charset=utf-8," + csvLines.join("\n");
+            const encodingUri = encodeURI(csvContent);
+            const downloadGate = document.createElement("a");
+            
+            downloadGate.setAttribute("href", encodingUri);
+            downloadGate.setAttribute("download", `AutoCrafts_OperationalReport_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(downloadGate);
+            downloadGate.click();
+            document.body.removeChild(downloadGate);
+        }
+
+        // Sync Data State Synchronization
         function syncStorageAndRefresh() {
             localStorage.setItem('ac_products', JSON.stringify(products));
             localStorage.setItem('ac_cart', JSON.stringify(cart));
