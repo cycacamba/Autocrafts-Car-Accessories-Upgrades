@@ -19,7 +19,6 @@
         .logo-text-auto { color: #e11d48; font-family: 'Impact', 'Arial Black', sans-serif; }
         .logo-text-crafts { color: #2563eb; font-family: 'Impact', 'Arial Black', sans-serif; }
         
-        /* Fixed Local Image Handler referencing image_ffeaa5.jpg verbatim */
         .brand-logo-disk {
             background-image: url('image_ffeaa5.jpg');
             background-size: cover;
@@ -33,94 +32,146 @@
     <!-- NAVIGATION BAR -->
     <nav class="bg-[#0f1115] border-b-2 metallic-border sticky top-0 z-50 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-24">
-                <div class="flex items-center space-x-4">
-                    <!-- Brand Identity Layer using image_ffeaa5.jpg verbatim -->
-                    <div class="flex items-center space-x-3 cursor-pointer" onclick="showSection('home')">
-                        <div class="w-14 h-14 rounded-full brand-logo-disk border-2 border-slate-400 shadow-inner flex items-center justify-center bg-slate-900">
-                            <!-- Graphical Fallback icon displays underneath if image_ffeaa5.jpg path isn't local -->
-                            <i class="fa-solid fa-gear text-slate-600 text-xl absolute z-0"></i>
+            <div class="flex items-center justify-between h-20 md:h-24">
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="flex items-center space-x-2 md:space-x-3 cursor-pointer" onclick="showSection('home')">
+                        <div class="w-10 h-10 md:w-14 md:h-14 rounded-full brand-logo-disk border-2 border-slate-400 shadow-inner flex items-center justify-center bg-slate-900">
+                            <i class="fa-solid fa-gear text-slate-600 text-sm md:text-xl absolute z-0"></i>
                         </div>
                         <div class="relative z-10">
-                            <div class="text-2xl font-black uppercase tracking-tight flex items-center leading-none">
+                            <div class="text-lg md:text-2xl font-black uppercase tracking-tight flex items-center leading-none">
                                 <span class="logo-text-auto">AUTO</span>
                                 <span class="logo-text-crafts ml-1">CRAFTS</span>
                             </div>
-                            <span class="block text-[10px] text-slate-400 font-bold tracking-[0.25em] uppercase mt-0.5">& Upgrades</span>
+                            <span class="block text-[8px] md:text-[10px] text-slate-400 font-bold tracking-[0.25em] uppercase mt-0.5">& Upgrades</span>
                         </div>
                     </div>
-                    <div class="hidden lg:block ml-10">
-                        <div class="flex space-x-6">
+                    <div class="hidden lg:flex items-center ml-6 xl:ml-10 space-x-6">
+                        <div class="flex space-x-4 xl:space-x-6 items-center">
                             <button onclick="showSection('home')" class="nav-link text-white border-b-2 border-rose-600 px-1 py-2 text-xs font-black uppercase tracking-wider">Home</button>
                             <button onclick="showSection('services')" class="nav-link text-slate-400 hover:text-white px-1 py-2 text-xs font-black uppercase tracking-wider transition">Services</button>
                             <button onclick="showSection('shop')" class="nav-link text-slate-400 hover:text-white px-1 py-2 text-xs font-black uppercase tracking-wider transition">Shop Catalog</button>
-                            <button onclick="redirectToShopee()" class="text-amber-500 hover:text-amber-400 px-1 py-2 text-xs font-black uppercase tracking-wider transition"><i class="fa-solid fa-bag-shopping mr-1"></i> Shopee PH</button>
                         </div>
+                        
+                        <!-- RELOCATED NAVIGATION SEARCH BAR -->
+                        <div class="relative w-48 xl:w-64">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                                <i class="fa-solid fa-magnifying-glass text-[10px]"></i>
+                            </span>
+                            <input type="text" id="catalog-search-input" onkeyup="executeCatalogSearch()" placeholder="Quick catalog lookup..." class="w-full bg-slate-900/90 border border-slate-700/80 rounded-lg pl-8 pr-3 py-1.5 text-[11px] text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 font-medium transition shadow-inner">
+                        </div>
+
+                        <button onclick="redirectToShopee()" class="text-amber-500 hover:text-amber-400 px-1 py-2 text-xs font-black uppercase tracking-wider transition whitespace-nowrap"><i class="fa-solid fa-bag-shopping mr-1"></i> Shopee PH</button>
                     </div>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <!-- Shopping Cart Trigger Button -->
-                    <button onclick="toggleCartModal()" class="relative text-slate-300 hover:text-white bg-slate-800/60 hover:bg-slate-800 px-4 py-2.5 rounded-lg border border-slate-700 transition">
-                        <i class="fa-solid fa-cart-shopping text-md"></i>
-                        <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-rose-600 text-white rounded-full text-[10px] w-5 h-5 flex items-center justify-center font-black border border-slate-900 hidden">0</span>
+                
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <button onclick="toggleCartModal()" class="relative text-slate-300 hover:text-white bg-slate-800/60 hover:bg-slate-800 px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-slate-700 transition">
+                        <i class="fa-solid fa-cart-shopping text-sm md:text-md"></i>
+                        <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-rose-600 text-white rounded-full text-[9px] md:text-[10px] w-4 h-4 md:w-5 md:h-5 flex items-center justify-center font-black border border-slate-900 hidden">0</span>
                     </button>
-                    <button onclick="openLoginModal(false)" class="text-slate-300 hover:text-white text-xs font-bold uppercase tracking-wider px-3 py-2"><i class="fa-solid fa-user mr-2"></i>Login</button>
-                    <button onclick="openLoginModal(true)" class="bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white px-4 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest shadow-md transition duration-200 border border-rose-500"><i class="fa-solid fa-gears mr-2"></i>Admin Panel</button>
+                    
+                    <div class="hidden sm:flex items-center space-x-2">
+                        <button onclick="openLoginModal(false)" class="text-slate-300 hover:text-white text-xs font-bold uppercase tracking-wider px-3 py-2"><i class="fa-solid fa-user mr-2"></i>Login</button>
+                        <button onclick="openLoginModal(true)" class="bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white px-3 py-2 md:px-4 md:py-2.5 rounded-lg text-xs font-black uppercase tracking-widest shadow-md transition duration-200 border border-rose-500"><i class="fa-solid fa-gears mr-2"></i>Admin Panel</button>
+                    </div>
+
+                    <button onclick="toggleMobileMenu()" class="lg:hidden text-slate-300 hover:text-white text-xl p-2 focus:outline-none">
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-[#11141a] border-t metallic-border px-4 py-4 space-y-3 shadow-xl">
+            <!-- MOBILE TARGET SEARCH CONSOLE FIELD -->
+            <div class="relative w-full pb-2">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 pb-2 pointer-events-none text-slate-400">
+                    <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                </span>
+                <input type="text" id="catalog-search-input-mobile" onkeyup="executeMobileCatalogSearch()" placeholder="Search components..." class="w-full bg-slate-900 border border-slate-700 rounded-lg pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 font-medium transition shadow-inner">
+            </div>
+            <button onclick="mobileNavigate('home')" class="block w-full text-left text-white text-xs font-black uppercase tracking-wider py-2 border-b border-slate-800">Home</button>
+            <button onclick="mobileNavigate('services')" class="block w-full text-left text-slate-400 hover:text-white text-xs font-black uppercase tracking-wider py-2 border-b border-slate-800">Services</button>
+            <button onclick="mobileNavigate('shop')" class="block w-full text-left text-slate-400 hover:text-white text-xs font-black uppercase tracking-wider py-2 border-b border-slate-800">Shop Catalog</button>
+            <button onclick="redirectToShopee()" class="block w-full text-left text-amber-500 hover:text-amber-400 text-xs font-black uppercase tracking-wider py-2 border-b border-slate-800"><i class="fa-solid fa-bag-shopping mr-1"></i> Shopee PH Store</button>
+            
+            <div class="pt-2 grid grid-cols-2 gap-2 sm:hidden">
+                <button onclick="toggleMobileMenu(); openLoginModal(false)" class="bg-slate-800 hover:bg-slate-700 text-center text-slate-200 text-[10px] font-black uppercase tracking-wider py-2.5 rounded border border-slate-700"><i class="fa-solid fa-user mr-1"></i> Shopper Login</button>
+                <button onclick="toggleMobileMenu(); openLoginModal(true)" class="bg-rose-600 hover:bg-rose-500 text-center text-white text-[10px] font-black uppercase tracking-wider py-2.5 rounded"><i class="fa-solid fa-gears mr-1"></i> Admin Panel</button>
             </div>
         </div>
     </nav>
 
     <!-- MAIN CONTENT CONTAINERS -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
 
         <!-- HOME SECTION -->
-        <section id="home-section" class="space-y-12">
-            <!-- Hero Banner Container -->
-            <div class="relative bg-gradient-to-br from-slate-900 via-[#13161c] to-slate-900 rounded-2xl overflow-hidden border-2 metallic-border min-h-[400px] flex items-center p-8 md:p-12 shadow-2xl">
+        <section id="home-section" class="space-y-8 md:space-y-12">
+            <div class="relative bg-gradient-to-br from-slate-900 via-[#13161c] to-slate-900 rounded-2xl overflow-hidden border-2 metallic-border min-h-[340px] md:min-h-[400px] flex items-center p-6 md:p-12 shadow-2xl">
                 <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e11d48_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                <div class="relative z-20 max-w-2xl space-y-6">
-                    <div class="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700 rounded-full px-4 py-1.5 text-xs font-bold text-slate-300 uppercase tracking-wider shadow">
+                <div class="relative z-20 max-w-2xl space-y-4 md:space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700 rounded-full px-3 py-1 md:px-4 md:py-1.5 text-[10px] md:text-xs font-bold text-slate-300 uppercase tracking-wider shadow">
                         <span class="w-2 h-2 rounded-full bg-rose-600 animate-pulse"></span>
                         <span>Premium Mechanical Enhancements</span>
                     </div>
-                    <h1 class="text-5xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none">
+                    <h1 class="text-3xl sm:text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none">
                         Precision <span class="text-rose-600">Upgrades</span> For Your Vehicle
                     </h1>
-                    <p class="text-slate-400 text-sm md:text-base leading-relaxed">
+                    <p class="text-slate-400 text-xs md:text-base leading-relaxed">
                         Explore professional-grade components curated for maximum durability. From custom deep dish matting layouts to sleek aerodynamic rain visors and utility dampers.
                     </p>
-                    <div class="flex flex-wrap gap-4 pt-2">
-                        <button onclick="showSection('shop')" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black px-8 py-3.5 rounded-lg uppercase tracking-wider text-xs shadow-lg transition">Launch Catalog</button>
-                        <button onclick="redirectToShopee()" class="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 border border-amber-500 text-white font-black px-8 py-3.5 rounded-lg uppercase tracking-wider text-xs transition shadow-md"><i class="fa-solid fa-bag-shopping mr-2"></i>Order Directly via Shopee</button>
+                    <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                        <button onclick="openSupportChat()" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black px-6 py-3 md:px-8 md:py-3.5 rounded-lg uppercase tracking-wider text-[11px] md:text-xs shadow-lg transition text-center w-full sm:w-auto"><i class="fa-solid fa-comments mr-2"></i>Chat / Support</button>
+                        <button onclick="redirectToShopee()" class="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 border border-amber-500 text-white font-black px-6 py-3 md:px-8 md:py-3.5 rounded-lg uppercase tracking-wider text-[11px] md:text-xs transition shadow-md text-center w-full sm:w-auto"><i class="fa-solid fa-bag-shopping mr-2"></i>Order via Shopee</button>
                     </div>
                 </div>
-                <!-- Right Accent Vector referencing image_ffeaa5.jpg verbatim -->
                 <div class="hidden lg:flex absolute right-12 top-1/2 -translate-y-1/2 w-80 h-80 opacity-25 rounded-full brand-logo-disk border-4 border-slate-700 pointer-events-none mix-blend-luminosity"></div>
             </div>
 
             <!-- Value Proposition Panels -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="metallic-card p-6 rounded-xl text-center space-y-3">
-                    <div class="w-12 h-12 bg-rose-600/10 border border-rose-500/30 rounded-lg flex items-center justify-center mx-auto">
-                        <i class="fa-solid fa-shield-halved text-2xl text-rose-500"></i>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <!-- Deep Dish Mattings Button -->
+                <div onclick="filterShopAndNavigate('Deep Dish Matting')" class="metallic-card rounded-xl overflow-hidden shadow-lg flex flex-col justify-between border-b-4 border-b-rose-600 cursor-pointer group">
+                    <div class="h-44 md:h-52 w-full bg-slate-950 relative overflow-hidden">
+                        <img src="image_0a3d04.jpg" alt="Deep Dish Matting" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#111318] via-transparent to-transparent"></div>
                     </div>
-                    <h3 class="text-md font-black uppercase tracking-wider text-slate-200">Custom Sizing</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Floor matrices and protection trays laser-cut for flawless fitment and structural coverage.</p>
+                    <div class="p-5 md:p-6 space-y-1 md:space-y-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm md:text-md font-black uppercase tracking-wider text-slate-200 group-hover:text-rose-500 transition">Deep Dish Mattings 5D/3D</h3>
+                            <i class="fa-solid fa-circle-arrow-right text-rose-600 text-xs opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0"></i>
+                        </div>
+                        <p class="text-[11px] md:text-xs text-slate-400 leading-relaxed">Laser-fit waterproof car floor liners built with raised edges for total interior coverage and dirt collection.</p>
+                    </div>
                 </div>
-                <div class="metallic-card p-6 rounded-xl text-center space-y-3">
-                    <div class="w-12 h-12 bg-blue-600/10 border border-blue-500/30 rounded-lg flex items-center justify-center mx-auto">
-                        <i class="fa-solid fa-screwdriver-wrench text-2xl text-blue-500"></i>
+                <!-- Personalized Seat Covers Button -->
+                <div onclick="filterShopAndNavigate('all')" class="metallic-card rounded-xl overflow-hidden shadow-lg flex flex-col justify-between border-b-4 border-b-blue-600 cursor-pointer group">
+                    <div class="h-44 md:h-52 w-full bg-slate-950 relative overflow-hidden">
+                        <img src="image_ffeaa5.jpg" alt="Personalized Seat Cover" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#111318] via-transparent to-transparent"></div>
                     </div>
-                    <h3 class="text-md font-black uppercase tracking-wider text-slate-200">Utility Dampers</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Heavy-duty assist extensions built to minimize shock loads on hoods and tailgates.</p>
+                    <div class="p-5 md:p-6 space-y-1 md:space-y-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm md:text-md font-black uppercase tracking-wider text-slate-200 group-hover:text-blue-500 transition">Personalized Seat Covers</h3>
+                            <i class="fa-solid fa-circle-arrow-right text-blue-500 text-xs opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0"></i>
+                        </div>
+                        <p class="text-[11px] md:text-xs text-slate-400 leading-relaxed">Heavy-duty leatherette and breathable memory fabric matrices built perfectly tailored to your vehicle frame specs.</p>
+                    </div>
                 </div>
-                <div class="metallic-card p-6 rounded-xl text-center space-y-3">
-                    <div class="w-12 h-12 bg-rose-600/10 border border-rose-500/30 rounded-lg flex items-center justify-center mx-auto">
-                        <i class="fa-solid fa-truck-monster text-2xl text-rose-500"></i>
+                <!-- Rain Visors and Garnish Combo Sets Button -->
+                <div onclick="filterShopAndNavigate('Rain Visors')" class="metallic-card rounded-xl overflow-hidden shadow-lg flex flex-col justify-between border-b-4 border-b-amber-500 sm:col-span-2 lg:col-span-1 cursor-pointer group">
+                    <div class="h-44 md:h-52 w-full bg-slate-950 relative overflow-hidden">
+                        <img src="image_0a3d04.jpg" alt="Rain Visor & Garnish" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#111318] via-transparent to-transparent"></div>
                     </div>
-                    <h3 class="text-md font-black uppercase tracking-wider text-slate-200">Exterior Armor</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Stepboards, rail guards, and spoiler elements engineered to endure hostile road debris.</p>
+                    <div class="p-5 md:p-6 space-y-1 md:space-y-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm md:text-md font-black uppercase tracking-wider text-slate-200 group-hover:text-amber-500 transition">Rain Visors & Garnish Combo</h3>
+                            <i class="fa-solid fa-circle-arrow-right text-amber-500 text-xs opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0"></i>
+                        </div>
+                        <p class="text-[11px] md:text-xs text-slate-400 leading-relaxed">Aerodynamic high-gloss window deflectors combined with protective matte black handle and trim protection armor.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -128,25 +179,31 @@
         <!-- SERVICES SECTION -->
         <section id="services-section" class="hidden space-y-8">
             <div class="border-b metallic-border pb-4">
-                <h2 class="text-3xl font-black uppercase tracking-wider">Engineering Services</h2>
-                <p class="text-slate-400 text-xs mt-1">Professional layout validation and premium upgrade options mapping.</p>
+                <h2 class="text-2xl md:text-3xl font-black uppercase tracking-wider">Engineering Services</h2>
+                <p class="text-slate-400 text-xs mt-1">Professional service tracking, logistics optimization, and upgrade consultations.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="metallic-card p-8 rounded-xl flex flex-col justify-between border-t-4 border-t-blue-600">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <!-- Service Panel 1 -->
+                <div class="metallic-card p-6 md:p-8 rounded-xl flex flex-col justify-between border-t-4 border-t-blue-600">
                     <div class="space-y-4">
-                        <span class="text-[10px] font-black text-blue-500 tracking-widest uppercase bg-blue-950 border border-blue-800 px-2.5 py-1 rounded">Interior Precision</span>
-                        <h3 class="text-xl font-black uppercase tracking-tight text-slate-100">Matting & Sizing Diagnostics</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">We handle configuration layout confirmation for domestic vehicles. Our systems isolate custom deck metrics to prevent shifting and component wear inside utility cabins.</p>
+                        <span class="text-[9px] md:text-[10px] font-black text-blue-500 tracking-widest uppercase bg-blue-950 border border-blue-800 px-2.5 py-1 rounded inline-block">Direct Dispatch Channels</span>
+                        <h3 class="text-lg md:text-xl font-black uppercase tracking-tight text-slate-100">Scheduled Home Service / Same-Day Delivery</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Isolate your layout setup markers instantly. Our expedited deployment pipelines drop off and mount configuration layouts right inside your domestic driveway on short notice.</p>
                     </div>
-                    <button onclick="showSection('shop')" class="mt-6 text-xs font-black uppercase tracking-wider text-rose-500 hover:text-rose-400 transition flex items-center gap-2">Browse Deep Dish Lines <i class="fa-solid fa-arrow-right"></i></button>
+                    <button onclick="showSection('shop')" class="mt-6 w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black text-xs uppercase tracking-wider py-3 rounded-lg transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-shopping"></i> Access Catalog to Add to Cart
+                    </button>
                 </div>
-                <div class="metallic-card p-8 rounded-xl flex flex-col justify-between border-t-4 border-t-rose-600">
+                <!-- Service Panel 2 -->
+                <div class="metallic-card p-6 md:p-8 rounded-xl flex flex-col justify-between border-t-4 border-t-rose-600">
                     <div class="space-y-4">
-                        <span class="text-[10px] font-black text-rose-500 tracking-widest uppercase bg-rose-950 border border-rose-800 px-2.5 py-1 rounded">Utility Fittings</span>
-                        <h3 class="text-xl font-black uppercase tracking-tight text-slate-100">Pneumatic & Mechanical Assist Upgrades</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Staging custom damper mechanisms? We outfit structural assists across hoods and tailgates to regulate kinetic energy loads during heavy manual loading operations.</p>
+                        <span class="text-[9px] md:text-[10px] font-black text-rose-500 tracking-widest uppercase bg-rose-950 border border-rose-800 px-2.5 py-1 rounded inline-block">Facility Integration</span>
+                        <h3 class="text-lg md:text-xl font-black uppercase tracking-tight text-slate-100">Book Reservation / Shop Visit Consultation</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Lock down dedicated technician bay metrics. Bring your chassis into our localized facility track for detailed clearance testing, matrix mapping, and optimal damper weighting alignments.</p>
                     </div>
-                    <button onclick="redirectToShopee()" class="mt-6 text-xs font-black uppercase tracking-wider text-blue-500 hover:text-blue-400 transition flex items-center gap-2">Consult via Shopee Matrix <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                    <button onclick="openBookingPortal()" class="mt-6 w-full bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 border border-rose-500 text-white font-black text-xs uppercase tracking-wider py-3 rounded-lg transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-calendar-check"></i> Initialize Reservation Protocol
+                    </button>
                 </div>
             </div>
         </section>
@@ -155,83 +212,85 @@
         <section id="shop-section" class="hidden space-y-8">
             <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center border-b metallic-border pb-4 gap-4">
                 <div>
-                    <h2 class="text-3xl font-black uppercase tracking-wider">Product Catalog</h2>
-                    <p class="text-slate-400 text-xs mt-1">Isolate specific mechanical arrays using our classification filters.</p>
+                    <h2 class="text-2xl md:text-3xl font-black uppercase tracking-wider">Product Catalog</h2>
+                    <p class="text-slate-400 text-xs mt-1">Isolate specific mechanical arrays using search and taxonomy filters.</p>
                 </div>
-                <!-- Dynamically Filter Menu Buttons Overhaul -->
-                <div class="flex flex-wrap gap-2 max-w-4xl">
-                    <button onclick="filterShop('all')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">All Items</button>
-                    <button onclick="filterShop('Deep Dish Matting')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Deep Dish Matting</button>
-                    <button onclick="filterShop('Rain Visors')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Rain Visors</button>
-                    <button onclick="filterShop('Trunk Trays')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Trunk Trays</button>
-                    <button onclick="filterShop('Hood Lids')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Hood Lids</button>
-                    <button onclick="filterShop('Tailgate Assist')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Tailgate Assist</button>
-                    <button onclick="filterShop('Hood Assist Dampers')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Hood Assist Dampers</button>
-                    <button onclick="filterShop('Rail Guards')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Rail Guards</button>
-                    <button onclick="filterShop('Spoilers')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Spoilers</button>
-                    <button onclick="filterShop('Stepboards')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Stepboards</button>
-                    <button onclick="filterShop('Bed Covers')" class="bg-slate-800 hover:bg-slate-700 text-[9px] font-black uppercase tracking-wider px-3 py-2 rounded border border-slate-600 transition">Bed Covers</button>
+                
+                <div class="flex flex-col sm:flex-row items-stretch gap-3 w-full xl:w-auto">
+                    <!-- Taxonomy Filter Menus -->
+                    <div class="flex flex-wrap gap-1.5 md:gap-2">
+                        <button onclick="selectCategoryFilter('all')" class="category-btn bg-rose-600 text-[9px] font-black uppercase tracking-wider px-2.5 py-1.5 md:px-3 md:py-2 rounded border border-slate-600 transition">All Items</button>
+                        <button onclick="selectCategoryFilter('Deep Dish Matting')" class="category-btn bg-slate-800 text-[9px] font-black uppercase tracking-wider px-2.5 py-1.5 md:px-3 md:py-2 rounded border border-slate-600 transition">Deep Dish Matting</button>
+                        <button onclick="selectCategoryFilter('Rain Visors')" class="category-btn bg-slate-800 text-[9px] font-black uppercase tracking-wider px-2.5 py-1.5 md:px-3 md:py-2 rounded border border-slate-600 transition">Rain Visors</button>
+                        <button onclick="selectCategoryFilter('Trunk Trays')" class="category-btn bg-slate-800 text-[9px] font-black uppercase tracking-wider px-2.5 py-1.5 md:px-3 md:py-2 rounded border border-slate-600 transition">Trunk Trays</button>
+                        <button onclick="selectCategoryFilter('Hood Lids')" class="category-btn bg-slate-800 text-[9px] font-black uppercase tracking-wider px-2.5 py-1.5 md:px-3 md:py-2 rounded border border-slate-600 transition">Hood Lids</button>
+                        <button onclick="selectCategoryFilter('Tailgate Assist')" class="category-btn bg-slate-800 text-[9px] font-black uppercase tracking-wider px-2.5 py-1.5 md:px-3 md:py-2 rounded border border-slate-600 transition">Tailgate Assist</button>
+                        <button onclick="selectCategoryFilter('Hood Assist Dampers')" class="category-btn bg-slate-800 text-[9px] font-black uppercase tracking-wider px-2.5 py-1.5 md:px-3 md:py-2 rounded border border-slate-600 transition">Hood Assist Dampers</button>
+                        <button onclick="selectCategoryFilter('Rail Guards')" class="category-btn bg-slate-800 text-[9px] font-black uppercase tracking-wider px-2.5 py-1.5 md:px-3 md:py-2 rounded border border-slate-600 transition">Rail Guards</button>
+                        <button onclick="selectCategoryFilter('Spoilers')" class="category-btn bg-slate-800 text-[9px] font-black uppercase tracking-wider px-2.5 py-1.5 md:px-3 md:py-2 rounded border border-slate-600 transition">Spoilers</button>
+                        <button onclick="selectCategoryFilter('Stepboards')" class="category-btn bg-slate-800 text-[9px] font-black uppercase tracking-wider px-2.5 py-1.5 md:px-3 md:py-2 rounded border border-slate-600 transition">Stepboards</button>
+                        <button onclick="selectCategoryFilter('Bed Covers')" class="category-btn bg-slate-800 text-[9px] font-black uppercase tracking-wider px-2.5 py-1.5 md:px-3 md:py-2 rounded border border-slate-600 transition">Bed Covers</button>
+                    </div>
                 </div>
             </div>
 
             <!-- Product Grid -->
-            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Dynamically generated items -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <!-- Dynamically generated items populate here -->
             </div>
         </section>
 
         <!-- ADMIN DASHBOARD SECTION -->
         <section id="admin-section" class="hidden space-y-8">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b metallic-border pb-4 gap-4">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b metallic-border pb-4 gap-4">
                 <div>
-                    <h2 class="text-3xl font-black uppercase tracking-wider text-rose-600 flex items-center gap-2"><i class="fa-solid fa-gauge-high"></i> Operational Control Console</h2>
-                    <p class="text-slate-400 text-xs mt-1">Live data configuration streams, stock allocations, and metrics exporters.</p>
+                    <h2 class="text-2xl md:text-3xl font-black uppercase tracking-wider text-rose-600 flex items-center gap-2"><i class="fa-solid fa-gauge-high"></i> Control Console</h2>
+                    <p class="text-slate-400 text-xs mt-1">Live data configuration streams, stock allocations, and Excel metrics exporters.</p>
                 </div>
-                <div class="flex gap-2">
-                    <!-- EXCEL EXTRACTOR ACTION BUTTON -->
-                    <button onclick="exportDataToCSV()" class="bg-emerald-600 hover:bg-emerald-700 border border-emerald-500 text-xs font-black uppercase tracking-wider py-2.5 px-4 rounded-md transition flex items-center gap-2 shadow"><i class="fa-solid fa-file-excel"></i> Export Report to Excel</button>
-                    <button onclick="logoutAdmin()" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-xs font-black uppercase tracking-wider py-2.5 px-4 rounded-md transition">Exit Console</button>
+                <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                    <button onclick="exportDataToExcelCSV()" class="bg-emerald-600 hover:bg-emerald-700 border border-emerald-500 text-xs font-black uppercase tracking-wider py-2.5 px-4 rounded-md transition flex items-center justify-center gap-2 shadow flex-1 md:flex-initial"><i class="fa-solid fa-file-excel"></i> Export Excel Sheet</button>
+                    <button onclick="logoutAdmin()" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-xs font-black uppercase tracking-wider py-2.5 px-4 rounded-md transition flex-1 md:flex-initial text-center">Exit Console</button>
                 </div>
             </div>
 
             <!-- Administrative Financial Metrics -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="metallic-card p-6 rounded-xl flex items-center justify-between border-l-4 border-l-emerald-500">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <div class="metallic-card p-5 md:p-6 rounded-xl flex items-center justify-between border-l-4 border-l-emerald-500">
                     <div>
-                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Total Validated Sales Revenue</p>
-                        <h3 id="admin-revenue" class="text-2xl font-black text-emerald-400 mt-1">₱0</h3>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Total Revenue</p>
+                        <h3 id="admin-revenue" class="text-xl md:text-2xl font-black text-emerald-400 mt-1">₱0</h3>
                     </div>
-                    <i class="fa-solid fa-money-bill-wave text-3xl text-slate-700"></i>
+                    <i class="fa-solid fa-money-bill-wave text-2xl md:text-3xl text-slate-700"></i>
                 </div>
-                <div class="metallic-card p-6 rounded-xl flex items-center justify-between border-l-4 border-l-blue-500">
+                <div class="metallic-card p-5 md:p-6 rounded-xl flex items-center justify-between border-l-4 border-l-blue-500">
                     <div>
-                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Dispatched Material Volume</p>
-                        <h3 id="admin-units-sold" class="text-2xl font-black text-blue-400 mt-1">0 pcs</h3>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Dispatched Volume</p>
+                        <h3 id="admin-units-sold" class="text-xl md:text-2xl font-black text-blue-400 mt-1">0 pcs</h3>
                     </div>
-                    <i class="fa-solid fa-boxes-packing text-3xl text-slate-700"></i>
+                    <i class="fa-solid fa-boxes-packing text-2xl md:text-3xl text-slate-700"></i>
                 </div>
-                <div class="metallic-card p-6 rounded-xl flex items-center justify-between border-l-4 border-l-purple-500">
+                <div class="metallic-card p-5 md:p-6 rounded-xl flex items-center justify-between border-l-4 border-l-purple-500">
                     <div>
-                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Total Structural Orders Logs</p>
-                        <h3 id="admin-orders-count" class="text-2xl font-black text-purple-400 mt-1">0</h3>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Total System Logs</p>
+                        <h3 id="admin-orders-count" class="text-xl md:text-2xl font-black text-purple-400 mt-1">0</h3>
                     </div>
-                    <i class="fa-solid fa-network-wired text-3xl text-slate-700"></i>
+                    <i class="fa-solid fa-network-wired text-2xl md:text-3xl text-slate-700"></i>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
                 <!-- Add New Product Form Component -->
-                <div class="metallic-card p-6 rounded-xl h-fit space-y-4 shadow-xl">
-                    <h3 class="text-md font-black uppercase tracking-wider text-blue-400 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-square-plus"></i> Append Stock Record</h3>
+                <div class="metallic-card p-5 md:p-6 rounded-xl h-fit space-y-4 shadow-xl">
+                    <h3 class="text-sm font-black uppercase tracking-wider text-blue-400 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-square-plus"></i> Shopee/Lazada Style Uploader</h3>
                     <form id="add-product-form" onsubmit="addNewProduct(event)" class="space-y-4">
                         <div>
-                            <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Product Designation Name</label>
+                            <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Product Name</label>
                             <input type="text" id="prod-name" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-medium">
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Categorization Array</label>
-                                <select id="prod-cat" class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-[11px] text-white focus:outline-none focus:border-blue-500 font-bold">
+                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Category</label>
+                                <select id="prod-cat" class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-[10px] md:text-[11px] text-white focus:outline-none focus:border-blue-500 font-bold">
                                     <option value="Deep Dish Matting">Deep Dish Matting</option>
                                     <option value="Rain Visors">Rain Visors</option>
                                     <option value="Trunk Trays">Trunk Trays</option>
@@ -245,17 +304,17 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Price Matrix (PHP)</label>
+                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Price (PHP)</label>
                                 <input type="number" id="prod-price" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-mono">
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Stock Limits</label>
+                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Initial Stocks Available</label>
                                 <input type="number" id="prod-stock" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-mono">
                             </div>
                             <div>
-                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Graphic Fallback Key</label>
+                                <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Fallback Icon</label>
                                 <select id="prod-icon" class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-bold">
                                     <option value="fa-shield-halved">Matting System</option>
                                     <option value="fa-cloud-showers-heavy">Visor Aero</option>
@@ -265,57 +324,76 @@
                             </div>
                         </div>
                         <div>
-                            <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Product Media Asset</label>
-                            <input type="file" id="prod-image" accept="image/*" class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2 text-[11px] text-slate-400 file:mr-3 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-slate-800 file:text-white hover:file:bg-slate-700 file:transition">
+                            <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Upload Media (Phone/PC File Selector)</label>
+                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-slate-700 border-dashed rounded-md bg-[#07090c] hover:border-slate-500 transition relative">
+                                <div class="space-y-1 text-center">
+                                    <i class="fa-solid fa-images text-slate-500 text-2xl mb-1 block"></i>
+                                    <div class="flex text-xs text-slate-400 justify-center">
+                                        <label for="prod-image" class="relative cursor-pointer bg-slate-800 rounded px-2 py-1 font-black text-blue-500 hover:bg-slate-700 transition">
+                                            <span>Select Local File</span>
+                                            <input type="file" id="prod-image" accept="image/*" class="sr-only" onchange="previewSelectedLocalFile(event)">
+                                        </label>
+                                    </div>
+                                    <p class="text-[9px] text-slate-500 uppercase tracking-wider">PNG, JPG, GIF upto cache limit</p>
+                                </div>
+                                <div id="uploader-preview-box" class="absolute inset-0 bg-slate-900 rounded-md hidden items-center justify-center p-2">
+                                    <img id="uploader-preview-img" src="" class="h-full object-contain rounded border border-slate-700">
+                                    <button type="button" onclick="clearUploaderImage()" class="absolute top-2 right-2 bg-rose-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs font-black">&times;</button>
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black text-xs uppercase tracking-widest py-3 rounded-md transition shadow-md">Commit New Stock Node</button>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black text-xs uppercase tracking-widest py-3 rounded-md transition shadow-md">Commit Storefront Node</button>
                     </form>
                 </div>
 
                 <!-- Active Allocation Management Grid -->
-                <div class="metallic-card p-6 rounded-xl lg:col-span-2 space-y-4 overflow-x-auto shadow-xl">
-                    <h3 class="text-md font-black uppercase tracking-wider text-rose-500 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-boxes-stacked"></i> Warehouse Stock Matrix</h3>
-                    <table class="w-full text-left border-collapse min-w-[500px]">
-                        <thead>
-                            <tr class="border-b metallic-border text-[10px] uppercase text-slate-400 tracking-widest font-black">
-                                <th class="pb-3">Component Label</th>
-                                <th class="pb-3">Classification Class</th>
-                                <th class="pb-3">Unit Valuation</th>
-                                <th class="pb-3 text-center">Available Allocations</th>
-                                <th class="pb-3 text-right">Commands</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-inventory-rows" class="text-xs divide-y divide-slate-800 font-medium">
-                            <!-- Populated dynamic records -->
-                        </tbody>
-                    </table>
+                <div class="metallic-card p-5 md:p-6 rounded-xl lg:col-span-2 space-y-4 shadow-xl overflow-hidden">
+                    <h3 class="text-sm font-black uppercase tracking-wider text-rose-500 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-boxes-stacked"></i> Warehouse Stock Matrix</h3>
+                    <div class="overflow-x-auto w-full">
+                        <table class="w-full text-left border-collapse min-w-[500px]">
+                            <thead>
+                                <tr class="border-b metallic-border text-[10px] uppercase text-slate-400 tracking-widest font-black">
+                                    <th class="pb-3">Component Label</th>
+                                    <th class="pb-3">Category</th>
+                                    <th class="pb-3">Price</th>
+                                    <th class="pb-3 text-center">Stocks Available</th>
+                                    <th class="pb-3 text-right">Commands</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-inventory-rows" class="text-xs divide-y divide-slate-800/60 font-medium">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- Inbound Active Transaction Signal Streams Pipeline -->
-            <div class="metallic-card p-6 rounded-xl space-y-4 overflow-x-auto shadow-xl">
-                <h3 class="text-md font-black uppercase tracking-wider text-purple-400 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-arrow-pulse"></i> Order Ledger Streams Queue</h3>
-                <table class="w-full text-left border-collapse min-w-[600px]">
-                    <thead>
-                        <tr class="border-b metallic-border text-[10px] uppercase text-slate-400 tracking-widest font-black">
-                            <th class="pb-3">Log ID</th>
-                            <th class="pb-3">User Vector</th>
-                            <th class="pb-3">Items Summary Stack</th>
-                            <th class="pb-3">Computed Ledger Price</th>
-                            <th class="pb-3">Pipeline Status Flag</th>
-                            <th class="pb-3 text-right">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="admin-order-rows" class="text-xs divide-y divide-slate-800 font-medium">
-                        <!-- Populated state arrays -->
-                    </tbody>
-                </table>
+            <div class="metallic-card p-5 md:p-6 rounded-xl space-y-4 shadow-xl overflow-hidden">
+                <h3 class="text-sm font-black uppercase tracking-wider text-purple-400 border-b metallic-border pb-2 flex items-center gap-2"><i class="fa-solid fa-arrow-pulse"></i> Order Ledger Streams Queue</h3>
+                <div class="overflow-x-auto w-full">
+                    <table class="w-full text-left border-collapse min-w-[650px]">
+                        <thead>
+                            <tr class="border-b metallic-border text-[10px] uppercase text-slate-400 tracking-widest font-black">
+                                <th class="pb-3">Log ID</th>
+                                <th class="pb-3">User Vector</th>
+                                <th class="pb-3">Items Summary Stack</th>
+                                <th class="pb-3">Price</th>
+                                <th class="pb-3">Status</th>
+                                <th class="pb-3 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-order-rows" class="text-xs divide-y divide-slate-800/60 font-medium">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
     </main>
 
     <!-- FOOTER DESIGN SECTION -->
-    <footer class="bg-[#090b0e] border-t-2 metallic-border mt-24 text-xs text-slate-500 py-12">
+    <footer class="bg-[#090b0e] border-t-2 metallic-border mt-16 md:mt-24 text-xs text-slate-500 py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="space-y-3">
                 <div class="flex items-center space-x-2">
@@ -327,73 +405,100 @@
                 <p class="leading-relaxed text-[11px] text-slate-400">High-fitment premium automotive arrays configured to protect operational vehicle chassis from localized environmental stress points.</p>
             </div>
             <div>
-                <span class="text-xs font-black uppercase tracking-widest text-slate-300 block mb-3">Facility Coordinates</span>
+                <span class="text-xs font-black uppercase tracking-widest text-slate-300 block mb-2 md:mb-3">Facility Coordinates</span>
                 <p class="mb-1.5 text-slate-400 flex items-center"><i class="fa-solid fa-location-dot mr-2 text-rose-500"></i> Quezon City, Metro Manila, Philippines</p>
                 <p class="text-slate-400 flex items-center"><i class="fa-solid fa-phone mr-2 text-blue-500"></i> 0920 498 5635</p>
             </div>
             <div>
-                <span class="text-xs font-black uppercase tracking-widest text-slate-300 block mb-3">External Portals Links</span>
-                <!-- Integrated verified marketplace link tracking redirection target -->
-                <button onclick="redirectToShopee()" class="text-blue-500 hover:text-blue-400 transition font-bold flex items-center gap-1.5"><i class="fa-solid fa-square-arrow-up-right"></i> Verify Official Shopee Matrix Storefront</button>
+                <span class="text-xs font-black uppercase tracking-widest text-slate-300 block mb-2 md:mb-3">External Portals</span>
+                <button onclick="redirectToShopee()" class="text-blue-500 hover:text-blue-400 transition font-bold flex items-center text-left gap-1.5"><i class="fa-solid fa-square-arrow-up-right"></i> Verify Official Shopee Matrix Storefront</button>
             </div>
         </div>
     </footer>
 
-    <!-- SHARED ACCOUNT MODAL LAYER -->
+    <!-- INTERACTIVE AUTHENTICATION GATEWAY MODAL LAYER -->
     <div id="login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="metallic-card rounded-xl max-w-sm w-full p-6 relative">
+        <div class="metallic-card rounded-xl max-w-sm w-full p-5 md:p-6 relative">
             <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-500 hover:text-slate-300 text-xl font-bold transition">&times;</button>
             <div class="text-center mb-6">
-                <h3 id="modal-title" class="text-xl font-black tracking-tight uppercase text-white">Shopper Gateway</h3>
-                <p id="modal-desc" class="text-[11px] text-slate-400 mt-1">Provide authentication profile keys.</p>
+                <h3 id="modal-title" class="text-lg md:text-xl font-black tracking-tight uppercase text-white">Gateway</h3>
+                <p id="modal-desc" class="text-[11px] text-slate-400 mt-1">Access features without an account.</p>
             </div>
-            <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
-                <div>
-                    <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Email Node Address</label>
-                    <input type="text" id="login-user" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-rose-500 font-medium">
-                </div>
-                <div>
-                    <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Key Phrase Token</label>
-                    <input type="password" id="login-pass" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-rose-500 font-mono">
-                </div>
-                <div class="text-xs text-amber-500 font-bold hidden" id="login-feedback"></div>
-                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white font-black text-xs uppercase tracking-widest py-3.5 rounded-md transition border border-rose-500 shadow-md">Authorize Vector Token</button>
-            </form>
+            <div id="modal-form-zone"></div>
         </div>
     </div>
 
     <!-- BASKET MODAL DRAWER OVERLAY -->
     <div id="cart-modal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex justify-end">
-        <div class="bg-[#0b0e12] w-full max-w-md h-full p-6 border-l-2 metallic-border flex flex-col justify-between overflow-y-auto shadow-2xl">
+        <div class="bg-[#0b0e12] w-full max-w-md h-full p-5 md:p-6 border-l-2 metallic-border flex flex-col justify-between overflow-y-auto shadow-2xl">
             <div>
                 <div class="flex items-center justify-between border-b metallic-border pb-4 mb-6">
-                    <h3 class="text-lg font-black uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-basket-shopping text-blue-500"></i> Selected Matrix</h3>
+                    <h3 class="text-md md:text-lg font-black uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-basket-shopping text-blue-500"></i> Selected Matrix</h3>
                     <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white text-2xl font-bold transition">&times;</button>
                 </div>
-                <div id="cart-items-container" class="space-y-4">
-                    <!-- Loaded dynamically -->
-                </div>
+                <div id="cart-items-container" class="space-y-4"></div>
             </div>
 
-            <!-- Total Processing Sheet -->
             <div class="border-t metallic-border pt-6 mt-6 space-y-4">
                 <div class="flex justify-between items-center text-xs font-black uppercase tracking-widest">
                     <span class="text-slate-400">Total Computed Cost</span>
-                    <span id="cart-total" class="text-xl font-black text-white font-mono">₱0</span>
+                    <span id="cart-total" class="text-lg md:text-xl font-black text-white font-mono">₱0</span>
                 </div>
-                <button onclick="processCheckout()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black text-xs uppercase tracking-widest py-4 rounded-md transition shadow-lg">
-                    Execute Pipeline Checkout
+                <button onclick="openPaymentGateway()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 text-white font-black text-xs uppercase tracking-widest py-3.5 md:py-4 rounded-md transition shadow-lg">
+                    Proceed to Payment Protocol
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- QR PH PAYMENT TERMINAL GATEWAY MODAL -->
+    <div id="payment-modal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="metallic-card rounded-xl max-w-md w-full p-6 relative space-y-5">
+            <button onclick="closePaymentGateway()" class="absolute top-4 right-4 text-slate-500 hover:text-slate-300 text-2xl font-bold transition">&times;</button>
+            
+            <div class="text-center space-y-1">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-950 border border-amber-700/50 rounded-full text-[10px] font-black uppercase text-amber-400 tracking-wider">
+                    <i class="fa-solid fa-qrcode"></i> National QR Ph Standard Payment
+                </div>
+                <h3 class="text-lg font-black uppercase text-white tracking-wide">Scan & Settle Framework</h3>
+                <p class="text-[11px] text-slate-400 max-w-xs mx-auto">Scan with GCash, Maya, BDO, BPI, or any local mobile banking application.</p>
+            </div>
+
+            <!-- Stylized Simulated Standalone QR Ph Frame -->
+            <div class="bg-white p-4 rounded-xl max-w-[220px] mx-auto shadow-inner flex flex-col items-center justify-center relative border-4 border-slate-800">
+                <!-- QR Ph Centered Ident Emblem Flag -->
+                <div class="absolute inset-0 m-auto w-12 h-12 bg-slate-900 rounded-lg flex flex-col items-center justify-center border-2 border-white shadow-md text-[8px] font-black tracking-tighter text-center leading-none">
+                    <span class="text-blue-500">QR</span>
+                    <span class="text-amber-500">Ph</span>
+                </div>
+                <!-- Generated QR Matrix Layout Pattern -->
+                <i class="fa-solid fa-qrcode text-[170px] text-slate-900 leading-none"></i>
+            </div>
+
+            <!-- Manual Proof-of-Payment Matrix Track -->
+            <div class="bg-slate-900/80 p-4 rounded-lg border border-slate-800 space-y-3">
+                <div class="flex justify-between items-center text-xs">
+                    <span class="text-slate-400 font-bold uppercase">Amount Due:</span>
+                    <span id="payment-modal-total" class="font-mono font-black text-emerald-400 text-sm">₱0</span>
+                </div>
+                <div class="border-t border-slate-800 pt-2">
+                    <label class="block text-[9px] uppercase tracking-widest text-slate-400 font-black mb-1">Attach Transfer Receipt Screenshot</label>
+                    <input type="file" id="payment-receipt-file" accept="image/*" class="w-full bg-[#07090c] border border-slate-700 rounded p-1.5 text-[10px] text-slate-300 focus:outline-none font-bold">
+                </div>
+            </div>
+
+            <button onclick="processCheckout()" class="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 border border-emerald-500 text-white font-black text-xs uppercase tracking-widest py-3.5 rounded-md transition shadow-md">
+                Confirm & Upload Transmission
+            </button>
+        </div>
+    </div>
+
     <!-- CORE FUNCTIONAL SYSTEM CONTROLLER -->
     <script>
-        // Updated Default Mock Catalog Framework matching the custom menu taxonomy strings requested
+        // Default seed product matrices
         const defaultProducts = [
-            { id: 1, name: "Laser-Fit Premium Deep Dish Matting Set", category: "Deep Dish Matting", price: 3800, stock: 14, icon: "fa-shield-halved", image: "" },
-            { id: 2, name: "Aerodynamic Dark Finish Rain Visors Set", category: "Rain Visors", price: 1400, stock: 22, icon: "fa-cloud-showers-heavy", image: "" },
+            { id: 1, name: "Laser-Fit Premium Deep Dish Matting Set", category: "Deep Dish Matting", price: 3800, stock: 14, icon: "fa-shield-halved", image: "image_0a3d04.jpg" },
+            { id: 2, name: "Aerodynamic Dark Finish Rain Visors Set", category: "Rain Visors", price: 1400, stock: 22, icon: "fa-cloud-showers-heavy", image: "image_0a3d04.jpg" },
             { id: 3, name: "Heavy Duty Tailgate Assist Mechanical Damper", category: "Tailgate Assist", price: 2100, stock: 8, icon: "fa-screwdriver-wrench", image: "" },
             { id: 4, name: "Molded Precision Waterproof Trunk Trays Liner", category: "Trunk Trays", price: 2500, stock: 19, icon: "fa-shield-halved", image: "" }
         ];
@@ -404,13 +509,38 @@
         
         let currentUser = localStorage.getItem('ac_current_user') || "Guest Shopper";
         let isAdminTarget = false;
+        let activeBase64String = ""; 
+        let activeCategoryFilter = "all";
 
-        // Shopee Redirect Handler Function
-        function redirectToShopee() {
-            window.open('https://shopee.ph', '_blank');
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            icon.className = menu.classList.contains('hidden') ? "fa-solid fa-bars" : "fa-solid fa-xmark";
         }
 
-        // Section Display Router
+        function mobileNavigate(sectionId) {
+            toggleMobileMenu();
+            showSection(sectionId);
+        }
+
+        function redirectToShopee() {
+            window.open('https://shopee.ph/autocrafts?entryPoint=ShopBySearch&fbclid=IwY2xjawSKSRRleHRuA2FlbQIxMQBzcnRjBmFwcF9pZAwzNTA2ODU1MzE3MjgAAR5Awz782T3axOIy6LUsc3ti2gLBEEWqBLv0moi1vai-5CD0BtVceBnDNcxa0A_aem_9i7TJPyo9IO4_oYA8m2v0g&searchKeyword=autocrafts&tab=shop', '_blank');
+        }
+
+        function openSupportChat() {
+            alert("Customer Routing Connection initialization: Connecting with AutoCrafts support dispatcher channels via line stream link...");
+        }
+
+        function openBookingPortal() {
+            alert("Reservation Engine Active: Launching shop consultation calendar registry. Select your target tracking hour...");
+        }
+
+        function filterShopAndNavigate(category) {
+            showSection('shop');
+            selectCategoryFilter(category);
+        }
+
         function showSection(sectionId) {
             document.getElementById('home-section').classList.add('hidden');
             document.getElementById('services-section').classList.add('hidden');
@@ -431,27 +561,64 @@
             });
         }
 
-        // Administrative Access Module
+        function previewSelectedLocalFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                activeBase64String = e.target.result;
+                document.getElementById('uploader-preview-img').src = activeBase64String;
+                document.getElementById('uploader-preview-box').classList.remove('hidden');
+                document.getElementById('uploader-preview-box').classList.add('flex');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearUploaderImage() {
+            activeBase64String = "";
+            document.getElementById('prod-image').value = "";
+            document.getElementById('uploader-preview-box').classList.add('hidden');
+            document.getElementById('uploader-preview-box').classList.remove('flex');
+        }
+
         function openLoginModal(adminContext = false) {
             isAdminTarget = adminContext;
             const modal = document.getElementById('login-modal');
             const title = document.getElementById('modal-title');
             const desc = document.getElementById('modal-desc');
-            const fb = document.getElementById('login-feedback');
+            const formZone = document.getElementById('modal-form-zone');
             
-            fb.classList.add('hidden');
             modal.classList.remove('hidden');
 
             if(isAdminTarget) {
                 title.innerText = "Console Authorization Window";
-                desc.innerText = "Provide administrative root tokens to enable telemetry matrices.";
-                document.getElementById('login-user').value = "admin";
-                document.getElementById('login-pass').value = "admin123";
+                desc.innerText = "Provide administrative credentials to open management nodes.";
+                formZone.innerHTML = `
+                    <form onsubmit="handleAdminLoginSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Email Node Address</label>
+                            <input type="text" id="login-user" value="admin" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-rose-500 font-medium">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-black mb-1">Key Phrase Token</label>
+                            <input type="password" id="login-pass" value="admin123" required class="w-full bg-[#0a0c0f] border border-slate-700 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-rose-500 font-mono">
+                        </div>
+                        <div class="text-xs text-amber-500 font-bold hidden" id="login-feedback"></div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white font-black text-xs uppercase tracking-widest py-3.5 rounded-md transition border border-rose-500 shadow-md">Authorize Vector Token</button>
+                    </form>
+                `;
             } else {
                 title.innerText = "Shopper Matrix Authentication";
-                desc.innerText = "Synchronize local parameters and verify historic cart buffers.";
-                document.getElementById('login-user').value = "shopper@autocrafts.ph";
-                document.getElementById('login-pass').value = "buyer123";
+                desc.innerText = "Access the catalog pipeline instantly as our guest visitor.";
+                formZone.innerHTML = `
+                    <div class="space-y-4 text-center py-4">
+                        <p class="text-xs text-slate-400">No account required. Click below to explore products and log order queues.</p>
+                        <button onclick="executeFreeShopperLogin()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-black text-xs uppercase tracking-widest py-3.5 rounded-md transition border border-blue-500 shadow-md">
+                            <i class="fa-solid fa-bolt mr-2"></i>Instant Guest Login
+                        </button>
+                    </div>
+                `;
             }
         }
 
@@ -459,40 +626,44 @@
             document.getElementById('login-modal').classList.add('hidden');
         }
 
-        function handleLoginSubmit(event) {
-            event.preventDefault();
-            const user = document.getElementById('login-user').value;
-            const pass = document.getElementById('login-pass').value;
+        function executeFreeShopperLogin() {
+            currentUser = "Guest_Shopper_" + Math.floor(1000 + Math.random() * 9000);
+            localStorage.setItem('ac_current_user', currentUser);
+            document.getElementById('login-modal').classList.add('hidden');
+            showSection('shop');
+            alert(`Authorized connection via open port channel: ${currentUser}`);
+        }
 
-            if (isAdminTarget) {
-                if (user === "admin" && pass === "admin123") {
-                    document.getElementById('login-modal').classList.add('hidden');
-                    showSection('admin');
-                } else {
-                    const fb = document.getElementById('login-feedback');
-                    fb.innerText = "Security Alert: Verification token does not match console constraints.";
-                    fb.classList.remove('hidden');
-                }
-            } else {
-                currentUser = user;
-                localStorage.setItem('ac_current_user', currentUser);
-                alert(`Welcome: Security state authorized for node ${user}`);
+        function handleAdminLoginSubmit(event) {
+            event.preventDefault();
+            if (document.getElementById('login-user').value === "admin" && document.getElementById('login-pass').value === "admin123") {
                 document.getElementById('login-modal').classList.add('hidden');
-                showSection('shop');
+                showSection('admin');
+            } else {
+                const fb = document.getElementById('login-feedback');
+                fb.innerText = "Security Alert: Verification token error.";
+                fb.classList.remove('hidden');
             }
         }
 
-        function logoutAdmin() {
-            showSection('home');
-        }
-
-        // Basket Processing Logic
+        function logoutAdmin() { showSection('home'); }
+        
         function toggleCartModal() {
             const drawer = document.getElementById('cart-modal');
             drawer.classList.toggle('hidden');
-            if(!drawer.classList.contains('hidden')) {
-                renderCartSheet();
-            }
+            if(!drawer.classList.contains('hidden')) renderCartSheet();
+        }
+
+        function openPaymentGateway() {
+            if (cart.length === 0) return;
+            document.getElementById('cart-modal').classList.add('hidden');
+            const totalSum = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('payment-modal-total').innerText = `₱${totalSum.toLocaleString()}`;
+            document.getElementById('payment-modal').classList.remove('hidden');
+        }
+
+        function closePaymentGateway() {
+            document.getElementById('payment-modal').classList.add('hidden');
         }
 
         function addToCart(productId) {
@@ -512,7 +683,6 @@
             } else {
                 cart.push({ id: item.id, name: item.name, price: item.price, qty: 1, icon: item.icon, image: item.image });
             }
-
             syncStorageAndRefresh();
             updateCartBadge();
         }
@@ -523,13 +693,8 @@
 
             if (cartIndex > -1) {
                 cart[cartIndex].qty += delta;
-                if(baseProd && cart[cartIndex].qty > baseProd.stock) {
-                    alert(`Bounds Adjust: Setting limit allocation markers to standard max (${baseProd.stock}).`);
-                    cart[cartIndex].qty = baseProd.stock;
-                }
-                if (cart[cartIndex].qty <= 0) {
-                    cart.splice(cartIndex, 1);
-                }
+                if(baseProd && cart[cartIndex].qty > baseProd.stock) cart[cartIndex].qty = baseProd.stock;
+                if (cart[cartIndex].qty <= 0) cart.splice(cartIndex, 1);
                 syncStorageAndRefresh();
                 renderCartSheet();
                 updateCartBadge();
@@ -562,27 +727,27 @@
             cart.forEach(c => {
                 cartSum += (c.price * c.qty);
                 const itemRow = document.createElement('div');
-                itemRow.className = "flex items-center justify-between bg-slate-900 p-4 rounded-lg border border-slate-800";
+                itemRow.className = "flex items-center justify-between bg-slate-900 p-3 md:p-4 rounded-lg border border-slate-800 gap-2";
                 
                 const thumbnail = c.image 
-                    ? `<img src="${c.image}" class="w-10 h-10 object-cover rounded border border-slate-700">`
-                    : `<div class="w-10 h-10 bg-[#0a0c0f] rounded flex items-center justify-center border border-slate-800"><i class="fa-solid ${c.icon} text-slate-500 text-sm"></i></div>`;
+                    ? `<img src="${c.image}" class="w-10 h-10 object-cover rounded border border-slate-700 flex-shrink-0">`
+                    : `<div class="w-10 h-10 bg-[#0a0c0f] rounded flex items-center justify-center border border-slate-800 flex-shrink-0"><i class="fa-solid ${c.icon} text-slate-500 text-sm"></i></div>`;
 
                 itemRow.innerHTML = `
-                    <div class="flex items-center space-x-3">
+                    <div class="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
                         ${thumbnail}
-                        <div>
-                            <h4 class="text-xs font-black line-clamp-1 uppercase text-slate-200">${c.name}</h4>
+                        <div class="min-w-0 flex-1">
+                            <h4 class="text-xs font-black truncate uppercase text-slate-200">${c.name}</h4>
                             <p class="text-[10px] font-mono text-slate-400 mt-0.5">₱${c.price.toLocaleString()}</p>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-3">
+                    <div class="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
                         <div class="flex items-center bg-[#07090c] border border-slate-700 rounded">
-                            <button onclick="changeCartQty(${c.id}, -1)" class="px-2 py-1 text-xs text-slate-400 hover:text-white">-</button>
-                            <span class="px-1 font-mono text-xs w-6 text-center text-slate-200">${c.qty}</span>
-                            <button onclick="changeCartQty(${c.id}, 1)" class="px-2 py-1 text-xs text-slate-400 hover:text-white">+</button>
+                            <button onclick="changeCartQty(${c.id}, -1)" class="px-1.5 py-0.5 md:px-2 md:py-1 text-xs text-slate-400 hover:text-white">-</button>
+                            <span class="px-0.5 font-mono text-xs w-5 text-center text-slate-200">${c.qty}</span>
+                            <button onclick="changeCartQty(${c.id}, 1)" class="px-1.5 py-0.5 md:px-2 md:py-1 text-xs text-slate-400 hover:text-white">+</button>
                         </div>
-                        <span class="text-xs font-mono font-bold text-white w-20 text-right">₱${(c.price * c.qty).toLocaleString()}</span>
+                        <span class="text-xs font-mono font-bold text-white w-16 md:w-20 text-right">₱${(c.price * c.qty).toLocaleString()}</span>
                     </div>
                 `;
                 container.appendChild(itemRow);
@@ -593,16 +758,19 @@
         function processCheckout() {
             if(cart.length === 0) return;
 
+            const receiptInput = document.getElementById('payment-receipt-file');
+            if (!receiptInput.files || receiptInput.files.length === 0) {
+                alert("Verification Missing: Please select and upload your QR Ph transfer receipt screenshot to continue.");
+                return;
+            }
+
             let errorFlag = false;
             cart.forEach(c => {
                 const matchedStock = products.find(p => p.id === c.id);
-                if(!matchedStock || matchedStock.stock < c.qty) {
-                    alert(`Collision Exception: Internal warehouse checks failed for: ${c.name}`);
-                    errorFlag = true;
-                }
+                if(!matchedStock || matchedStock.stock < c.qty) errorFlag = true;
             });
 
-            if(errorFlag) return;
+            if(errorFlag) { alert("Collision Exception: Internal validation checks failed."); return; }
 
             cart.forEach(c => {
                 const target = products.find(p => p.id === c.id);
@@ -610,53 +778,116 @@
             });
 
             const incomingSum = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            const newOrder = {
+            orders.push({
                 orderId: "AC-" + Math.floor(100000 + Math.random() * 900000),
                 customer: currentUser,
                 itemsSummary: cart.map(c => `${c.qty}x ${c.name}`).join(" | "),
                 total: incomingSum,
                 status: "Pending",
                 totalQty: cart.reduce((sum, item) => sum + item.qty, 0)
-            };
+            });
 
-            orders.push(newOrder);
             cart = [];
-
+            receiptInput.value = ""; 
             syncStorageAndRefresh();
             updateCartBadge();
-            toggleCartModal();
-            alert("Confirmed: Transmission stream pushed down to processing queue logs.");
+            closePaymentGateway();
+            alert("Confirmed: QR Ph remittance token stream pushed down to admin confirmation queue processing loops.");
         }
 
-        // UI Shop Renderer Engine
+        // DESKTOP NAVIGATION REAL-TIME FILTER RUNTIME ACTION LOGIC
+        function executeCatalogSearch() {
+            // Instantly open the store section if the consumer types inside the menu bar
+            const currentActiveSec = document.getElementById('shop-section').classList.contains('hidden');
+            if(currentActiveSec && document.getElementById('catalog-search-input').value.trim() !== "") {
+                showSection('shop');
+            }
+
+            const query = document.getElementById('catalog-search-input').value.toLowerCase().trim();
+            
+            const filteredArray = products.filter(p => {
+                const categoryMatches = (activeCategoryFilter === "all" || p.category === activeCategoryFilter);
+                const queryMatches = p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
+                return categoryMatches && queryMatches;
+            });
+
+            renderShopItems(filteredArray);
+        }
+
+        // MOBILE NAVIGATION BAR SEARCH COMPONENT LOGIC
+        function executeMobileCatalogSearch() {
+            if(document.getElementById('shop-section').classList.contains('hidden')) {
+                showSection('shop');
+            }
+            const query = document.getElementById('catalog-search-input-mobile').value.toLowerCase().trim();
+            const filteredArray = products.filter(p => {
+                const categoryMatches = (activeCategoryFilter === "all" || p.category === activeCategoryFilter);
+                const queryMatches = p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
+                return categoryMatches && queryMatches;
+            });
+            renderShopItems(filteredArray);
+        }
+
+        function selectCategoryFilter(category) {
+            activeCategoryFilter = category;
+            
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('onclick').includes(`'${category}'`)) {
+                    btn.classList.add('bg-rose-600');
+                    btn.classList.remove('bg-slate-800');
+                } else {
+                    btn.classList.remove('bg-rose-600');
+                    btn.classList.add('bg-slate-800');
+                }
+            });
+            
+            executeCatalogSearch();
+        }
+
         function renderShopItems(itemsToRender = products) {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
 
+            if (itemsToRender.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-500 font-medium text-xs uppercase tracking-wider">
+                        <i class="fa-solid fa-triangle-exclamation text-xl mb-2 block text-slate-600"></i> No mechanical items match criteria
+                    </div>`;
+                return;
+            }
+
             itemsToRender.forEach(p => {
                 const card = document.createElement('div');
-                card.className = "metallic-card rounded-xl overflow-hidden flex flex-col justify-between transition transform hover:-translate-y-1.5 duration-300";
+                card.className = "metallic-card rounded-xl overflow-hidden flex flex-col justify-between transition transform hover:-translate-y-1 duration-300";
                 
                 const imageLayout = p.image 
-                    ? `<div class="h-48 w-full overflow-hidden border-b border-slate-800 bg-slate-950 relative">
+                    ? `<div class="h-44 md:h-48 w-full overflow-hidden border-b border-slate-800 bg-slate-950 relative">
                             <img src="${p.image}" class="w-full h-full object-cover">
                        </div>`
-                    : `<div class="p-6 text-center border-b border-slate-800 bg-slate-950/60 h-48 flex flex-col items-center justify-center relative">
+                    : `<div class="p-6 text-center border-b border-slate-800 bg-slate-950/60 h-44 md:h-48 flex flex-col items-center justify-center relative">
                         <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:12px_12px] opacity-30"></div>
-                        <i class="fa-solid ${p.icon} text-4xl text-slate-600 mb-3 relative z-10"></i>
+                        <i class="fa-solid ${p.icon} text-3xl md:text-4xl text-slate-600 mb-2 md:mb-3 relative z-10"></i>
                         <span class="text-[9px] font-black uppercase text-slate-500 tracking-widest relative z-10 border border-slate-800 px-2 py-0.5 rounded bg-slate-900">${p.category}</span>
                        </div>`;
 
+                const stockBadge = p.stock > 0 
+                    ? `<span class="bg-blue-950/80 text-blue-400 border border-blue-800/60 text-[9px] font-black px-2 py-0.5 rounded tracking-wide uppercase">Stocks: ${p.stock}</span>`
+                    : `<span class="bg-rose-950/80 text-rose-500 border border-rose-800/60 text-[9px] font-black px-2 py-0.5 rounded tracking-wide uppercase">Out of Stock</span>`;
+
                 card.innerHTML = `
                     ${imageLayout}
-                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
-                        <div class="space-y-1.5">
+                    <div class="p-4 md:p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">${p.category}</span>
+                                ${stockBadge}
+                            </div>
                             <h4 class="font-black text-xs uppercase tracking-tight text-slate-100 line-clamp-2">${p.name}</h4>
-                            <p class="text-[10px] text-slate-400 font-medium">Available: ${p.stock > 0 ? p.stock + ' units' : '<span class="text-rose-500 font-bold uppercase tracking-wide">Out of allocation</span>'}</p>
                         </div>
                         <div class="flex items-center justify-between pt-2 border-t border-slate-800/60">
-                            <span class="text-md font-mono font-black text-white">₱${p.price.toLocaleString()}</span>
-                            <button onclick="addToCart(${p.id})" ${p.stock === 0 ? 'disabled' : ''} class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 disabled:from-slate-800 disabled:to-slate-800 disabled:border-slate-700 text-white font-bold p-2.5 rounded-lg transition shadow">
+                            <span class="text-sm md:text-md font-mono font-black text-white">₱${p.price.toLocaleString()}</span>
+                            <button onclick="addToCart(${p.id})" ${p.stock === 0 ? 'disabled' : ''} class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 border border-blue-500 disabled:from-slate-800 disabled:to-slate-800 disabled:border-slate-700 text-white font-bold p-2 md:p-2.5 rounded-lg transition shadow">
                                 <i class="fa-solid fa-cart-plus text-xs"></i>
                             </button>
                         </div>
@@ -666,16 +897,6 @@
             });
         }
 
-        function filterShop(category) {
-            if (category === 'all') {
-                renderShopItems(products);
-            } else {
-                const filtered = products.filter(p => p.category === category);
-                renderShopItems(filtered);
-            }
-        }
-
-        // Administrative View Tables Hydrator
         function renderAdminInventory() {
             const container = document.getElementById('admin-inventory-rows');
             container.innerHTML = '';
@@ -685,24 +906,24 @@
                 row.className = "hover:bg-slate-900/60 transition border-b border-slate-800/40";
 
                 const rowThumb = p.image 
-                    ? `<img src="${p.image}" class="w-9 h-9 object-cover rounded border border-slate-700">`
-                    : `<div class="w-9 h-9 bg-[#0b0e12] rounded flex items-center justify-center border border-slate-800"><i class="fa-solid ${p.icon} text-slate-500 text-xs"></i></div>`;
+                    ? `<img src="${p.image}" class="w-9 h-9 object-cover rounded border border-slate-700 flex-shrink-0">`
+                    : `<div class="w-9 h-9 bg-[#0b0e12] rounded flex items-center justify-center border border-slate-800 flex-shrink-0"><i class="fa-solid ${p.icon} text-slate-500 text-xs"></i></div>`;
 
                 row.innerHTML = `
-                    <td class="py-3.5 pr-3 font-black text-slate-200 flex items-center gap-3 uppercase tracking-tight">
+                    <td class="py-3.5 pr-3 font-black text-slate-200 flex items-center gap-3 uppercase tracking-tight min-w-[200px]">
                         ${rowThumb}
                         <span class="line-clamp-1 max-w-xs">${p.name}</span>
                     </td>
-                    <td class="py-3.5 px-3 text-slate-400 font-bold text-[10px] uppercase">${p.category}</td>
+                    <td class="py-3.5 px-3 text-slate-400 font-bold text-[10px] uppercase min-w-[125px]">${p.category}</td>
                     <td class="py-3.5 px-3 text-white font-mono font-bold">₱${p.price.toLocaleString()}</td>
-                    <td class="py-3.5 px-3 text-center">
-                        <div class="flex items-center justify-center space-x-2">
-                            <button onclick="adjustStock(${p.id}, -1)" class="bg-slate-800 border border-slate-700 text-xs px-2 py-0.5 rounded text-slate-400 hover:text-white">-</button>
-                            <span class="w-8 inline-block font-mono text-slate-200 font-bold">${p.stock}</span>
-                            <button onclick="adjustStock(${p.id}, 1)" class="bg-slate-800 border border-slate-700 text-xs px-2 py-0.5 rounded text-slate-400 hover:text-white">+</button>
+                    <td class="py-3.5 px-3 text-center min-w-[100px]">
+                        <div class="flex items-center justify-center space-x-1.5">
+                            <button onclick="adjustStock(${p.id}, -1)" class="bg-slate-800 border border-slate-700 text-xs px-1.5 py-0.5 rounded text-slate-400 hover:text-white">-</button>
+                            <span class="w-6 inline-block font-mono text-slate-200 font-bold text-center">${p.stock}</span>
+                            <button onclick="adjustStock(${p.id}, 1)" class="bg-slate-800 border border-slate-700 text-xs px-1.5 py-0.5 rounded text-slate-400 hover:text-white">+</button>
                         </div>
                     </td>
-                    <td class="py-3.5 pl-3 text-right">
+                    <td class="py-3.5 pl-3 text-right min-w-[80px]">
                         <button onclick="deleteProduct(${p.id})" class="text-rose-500 hover:text-rose-400 text-xs font-black uppercase tracking-wider transition"><i class="fa-solid fa-trash-can mr-1"></i> Purge</button>
                     </td>
                 `;
@@ -715,7 +936,7 @@
             container.innerHTML = '';
 
             if (orders.length === 0) {
-                container.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-500 text-xs font-medium">No system log files found inside transaction streams.</td></tr>`;
+                container.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-500 text-xs font-medium">No log files verified inside current registers.</td></tr>`;
                 return;
             }
 
@@ -727,12 +948,12 @@
                 const row = document.createElement('tr');
                 row.className = "hover:bg-slate-900/60 transition border-b border-slate-800/40";
                 row.innerHTML = `
-                    <td class="py-4 pr-3 font-mono font-bold text-xs text-blue-400">${o.orderId}</td>
-                    <td class="py-4 px-3 text-slate-200 font-bold">${o.customer}</td>
-                    <td class="py-4 px-3 text-slate-400 max-w-xs truncate" title="${o.itemsSummary}">${o.itemsSummary}</td>
+                    <td class="py-4 pr-3 font-mono font-bold text-xs text-blue-400 min-w-[90px]">${o.orderId}</td>
+                    <td class="py-4 px-3 text-slate-200 font-bold min-w-[120px]">${o.customer}</td>
+                    <td class="py-4 px-3 text-slate-400 max-w-xs truncate min-w-[180px]" title="${o.itemsSummary}">${o.itemsSummary}</td>
                     <td class="py-4 px-3 text-white font-mono font-bold">₱${o.total.toLocaleString()}</td>
-                    <td class="py-4 px-3"><span class="px-2.5 py-0.5 rounded text-[9px] font-black uppercase tracking-widest ${statusBadgeColor}">${o.status}</span></td>
-                    <td class="py-4 pl-3 text-right space-x-2.5">
+                    <td class="py-4 px-3 min-w-[100px]"><span class="px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-widest ${statusBadgeColor}">${o.status}</span></td>
+                    <td class="py-4 pl-3 text-right space-x-2 min-w-[120px]">
                         ${o.status === "Pending" ? `
                             <button onclick="updateOrderStatus(${index}, 'Dispatched/Approved')" class="text-emerald-400 hover:text-emerald-300 text-xs font-black uppercase tracking-wider transition">Approve</button>
                             <button onclick="updateOrderStatus(${index}, 'Cancelled')" class="text-slate-500 hover:text-slate-400 text-xs font-bold uppercase tracking-wider transition">Void</button>
@@ -745,11 +966,8 @@
 
         function renderAdminMetrics() {
             const verifiedOrders = orders.filter(o => o.status === "Dispatched/Approved");
-            const runningRevenue = verifiedOrders.reduce((sum, o) => sum + o.total, 0);
-            const runningQty = verifiedOrders.reduce((sum, o) => sum + o.totalQty, 0);
-
-            document.getElementById('admin-revenue').innerText = `₱${runningRevenue.toLocaleString()}`;
-            document.getElementById('admin-units-sold').innerText = `${runningQty} pcs`;
+            document.getElementById('admin-revenue').innerText = `₱${verifiedOrders.reduce((sum, o) => sum + o.total, 0).toLocaleString()}`;
+            document.getElementById('admin-units-sold').innerText = `${verifiedOrders.reduce((sum, o) => sum + o.totalQty, 0)} pcs`;
             document.getElementById('admin-orders-count').innerText = orders.length;
         }
 
@@ -758,7 +976,6 @@
             syncStorageAndRefresh();
         }
 
-        // Programmatic Form File Processor Module
         function addNewProduct(event) {
             event.preventDefault();
             const name = document.getElementById('prod-name').value;
@@ -766,29 +983,25 @@
             const price = parseFloat(document.getElementById('prod-price').value);
             const stock = parseInt(document.getElementById('prod-stock').value);
             const icon = document.getElementById('prod-icon').value;
-            const imageFileInput = document.getElementById('prod-image').files[0];
 
-            if (imageFileInput) {
-                const reader = new FileReader();
-                reader.onloadend = function () {
-                    finalizeProductCreation(name, category, price, stock, icon, reader.result);
-                };
-                reader.readAsDataURL(imageFileInput);
-            } else {
-                finalizeProductCreation(name, category, price, stock, icon, "");
-            }
-        }
-
-        function finalizeProductCreation(name, category, price, stock, icon, imageString) {
-            const newProduct = { id: Date.now(), name, category, price, stock, icon, image: imageString };
+            const newProduct = { 
+                id: Date.now(), 
+                name, 
+                category, 
+                price, 
+                stock, 
+                icon, 
+                image: activeBase64String 
+            };
             
             try {
                 products.unshift(newProduct);
                 syncStorageAndRefresh();
                 document.getElementById('add-product-form').reset();
-                alert("Confirmed: Node parameter injected into active lists array.");
+                clearUploaderImage();
+                alert("Listing Published Successfully: Local media file stream parsed.");
             } catch (error) {
-                alert("Cache Overload: The media file sizes are too large to parse into local storage blocks.");
+                alert("Cache Buffer Limit Encountered: Try using a compressed image asset framework.");
                 products.shift();
             }
         }
@@ -808,52 +1021,49 @@
             }
         }
 
-        // SPREADSHEET (CSV EXCEL) GENERATOR FEATURE
-        function exportDataToCSV() {
+        function exportDataToExcelCSV() {
             let csvLines = [];
+            csvLines.push("\uFEFF");
+            csvLines.push("AUTOCRAFTS & UPGRADES - WAREHOUSE MASTER INVENTORY EXPORT");
+            csvLines.push(`Report Generated: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`);
+            csvLines.push(""); 
             
-            // Generate Warehouse Inventory Sheet Segment
-            csvLines.push("=== WAREHOUSE LIVE INVENTORY REPORT ===");
-            csvLines.push("Product ID,Component Name,Classification Category,Unit Sells Price (PHP),Current Stock Units");
+            csvLines.push("CURRENT WAREHOUSE STOCK ALLOCATIONS");
+            csvLines.push("Product ID,Component Description Label,Classification Category,Unit Retail Price (PHP),Stocks Available");
+            
             products.forEach(p => {
-                // Strip commas out of item names to prevent delimiter misalignment parsing
-                let clearName = p.name.replace(/,/g, " ");
-                csvLines.push(`${p.id},${clearName},${p.category},${p.price},${p.stock}`);
+                const cleanName = p.name.includes(",") ? `"${p.name.replace(/"/g, '""')}"` : p.name;
+                csvLines.push(`${p.id},${cleanName},${p.category},${p.price},${p.stock}`);
+            });
+            
+            csvLines.push(""); 
+            csvLines.push(""); 
+            
+            csvLines.push("TRANSACTION LOGS LEDGER PIPELINE");
+            csvLines.push("Order ID,Customer Vector,Items Ordered Summary Stack,Total Settlement Value (PHP),Current Transaction Pipeline Status");
+            
+            orders.forEach(o => {
+                const cleanSummary = o.itemsSummary.includes(",") ? `"${o.itemsSummary.replace(/"/g, '""')}"` : o.itemsSummary;
+                csvLines.push(`${o.orderId},${o.customer},${cleanSummary},${o.total},${o.status}`);
             });
 
-            csvLines.push("\n"); // line break spacing inside spreadsheet file execution
-            
-            // Generate Sales Ledger Sheet Segment
-            csvLines.push("=== SALES TRANSACTION HISTORIC LOGS ===");
-            csvLines.push("Order Identifier,User Account Node,Items Stacked Description,Total Settlement Value,Transaction Pipeline Status");
-            if(orders.length === 0) {
-                csvLines.push("No processed signal packages verified inside runtime registers.");
-            } else {
-                orders.forEach(o => {
-                    let clearSummary = o.itemsSummary.replace(/,/g, " ");
-                    csvLines.push(`${o.orderId},${o.customer},${clearSummary},${o.total},${o.status}`);
-                });
-            }
-
-            // Convert string block into data download matrix element mapping
-            const csvContent = "data:text/csv;charset=utf-8," + csvLines.join("\n");
-            const encodingUri = encodeURI(csvContent);
+            const csvContent = csvLines.join("\n");
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const downloadGate = document.createElement("a");
+            const url = URL.createObjectURL(blob);
             
-            downloadGate.setAttribute("href", encodingUri);
-            downloadGate.setAttribute("download", `AutoCrafts_OperationalReport_${new Date().toISOString().slice(0,10)}.csv`);
+            downloadGate.setAttribute("href", url);
+            downloadGate.setAttribute("download", `AutoCrafts_Excel_Report_${new Date().toISOString().slice(0,10)}.csv`);
             document.body.appendChild(downloadGate);
             downloadGate.click();
             document.body.removeChild(downloadGate);
         }
 
-        // Sync Data State Synchronization
         function syncStorageAndRefresh() {
             localStorage.setItem('ac_products', JSON.stringify(products));
             localStorage.setItem('ac_cart', JSON.stringify(cart));
             localStorage.setItem('ac_orders', JSON.stringify(orders));
-            
-            renderShopItems();
+            executeCatalogSearch();
             renderAdminInventory();
             renderAdminOrders();
             renderAdminMetrics();
